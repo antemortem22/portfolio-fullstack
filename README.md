@@ -17,12 +17,12 @@
 ### 🇺🇸 English
 This project combines a public portfolio landing page with a secure administrative panel, powered by a clean microservices backend architecture.
 
-It is designed not only as a personal portfolio but also as a demonstration of real-world fullstack engineering practices.
+It is designed not only as a personal portfolio but also as a demonstration of real-world practices.
 
 ### 🇪🇸 Español
 Este proyecto combina una landing pública con un panel administrativo privado, respaldado por una arquitectura backend basada en microservicios.
 
-Está diseñado no solo como portfolio personal, sino como demostración de prácticas reales de ingeniería fullstack.
+Está diseñado no solo como portfolio personal, sino como demostración de prácticas reales.
 
 ---
 
