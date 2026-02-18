@@ -107,12 +107,20 @@ feature → dev → test → main
 
 - [x] Monorepo setup
 - [x] Environment strategy
+
+### 🧠 Design Phase
+- [ ] ER database diagram
+- [ ] Application documentation
+
+### 💻 Implementation
 - [ ] Bootstrap Next.js frontend
 - [ ] Implement Portfolio Service
 - [ ] Implement Identity Service
+- [ ] Implement Messaging Service
 - [ ] Admin Dashboard
-- [ ] Messaging system
-- [ ] Event-driven notifications
+
+### ⚙️ Advanced
+- [ ] Event-driven notifications (RabbitMQ/Kafka + SignalR)
 - [ ] Docker containerization
 - [ ] Production deployment
 
