@@ -38,7 +38,19 @@ Next.js (Landing + Admin)
  │ Portfolio Service    │
  │ Messaging Service    │
  └──────────────────────┘
+
 ```
+### 🧩 Microservices Architecture
+
+The backend is designed using a microservices approach with clear domain separation:
+
+- **Identity Service** → Authentication, authorization and JWT management
+- **Portfolio Service** → Public portfolio content, projects, skills and profile data
+- **Messaging Service** → Contact form processing and message persistence
+
+Future services may include:
+- Analytics Service
+- Notifications Service
 
 ### Frontend
 - Next.js (App Router)
@@ -103,14 +115,14 @@ feature → dev → test → main
 
 ---
 
-### 🚀 Roadmap
+## 🚀 Roadmap
 
 ### ✅ Foundation
 - [x] Monorepo setup
 - [x] Environment strategy
 - [x] UI/UX design in Figma
-- [ ] Define microservices architecture
-- [ ] Define DB First strategy
+- [x] Define microservices architecture
+- [x] Define DB First strategy and ER
 
 ### 🎨 Landing MVP
 - [ ] Bootstrap Next.js frontend
