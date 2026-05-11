@@ -103,27 +103,42 @@ feature → dev → test → main
 
 ---
 
-## 🚀 Roadmap
+### 🚀 Roadmap
 
+### ✅ Foundation
 - [x] Monorepo setup
 - [x] Environment strategy
+- [x] UI/UX design in Figma
+- [ ] Define microservices architecture
+- [ ] Define DB First strategy
 
-### 🧠 Design Phase
-- [ ] ER database diagram
-- [ ] Application documentation
-
-### 💻 Implementation
+### 🎨 Landing MVP
 - [ ] Bootstrap Next.js frontend
-- [ ] Implement Portfolio Service
-- [ ] Implement Identity Service
-- [ ] Implement Messaging Service
-- [ ] Admin Dashboard
+- [ ] Build responsive landing page
+- [ ] Implement EN/ES support
+- [ ] Add mocked portfolio data
+- [ ] Deploy to Vercel
 
-### ⚙️ Advanced
-- [ ] Event-driven notifications (RabbitMQ/Kafka + SignalR)
+### 🧩 Backend Services
+- [ ] Portfolio Service (.NET 9)
+- [ ] Messaging Service (.NET 9)
+- [ ] SQL Server + EF Core DB First
+- [ ] Connect frontend to backend
+- [ ] Persist contact messages
+- [ ] Unit testing with xUnit
+
+### 🔐 Admin & Identity
+- [ ] Identity Service (.NET 9)
+- [ ] JWT authentication
+- [ ] Admin dashboard
+- [ ] CRUD management
+
+### 🔥 Advanced
+- [ ] SignalR notifications
+- [ ] RabbitMQ messaging
 - [ ] Docker containerization
+- [ ] CI/CD pipelines
 - [ ] Production deployment
-
 ---
 
 ## 🎯 Why this architecture?
