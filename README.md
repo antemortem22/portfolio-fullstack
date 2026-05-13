@@ -125,7 +125,7 @@ feature → dev → test → main
 - [x] Define DB First strategy and ER
 
 ### 🎨 Landing MVP
-- [ ] Bootstrap Next.js frontend
+- [x] Bootstrap Next.js frontend
 - [ ] Build responsive landing page
 - [ ] Implement EN/ES support
 - [ ] Add mocked portfolio data
