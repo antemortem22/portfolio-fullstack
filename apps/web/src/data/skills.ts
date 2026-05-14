@@ -1,6 +1,7 @@
 export const skillGroups = [
   {
     title: "Frontend",
+    icon: "code",
     skills: [
       { name: "React / Next.js", value: 90 },
       { name: "TypeScript", value: 85 },
@@ -9,27 +10,43 @@ export const skillGroups = [
   },
   {
     title: "Backend",
+    icon: "server",
     skills: [
-      { name: "Node.js", value: 80 },
-      { name: "APIs REST", value: 78 },
+      { name: ".NET / C#", value: 90 },
       { name: "Testing", value: 65 },
+      { name: "API Design", value: 90 },
     ],
   },
   {
     title: "Database",
+    icon: "database",
     skills: [
-      { name: "SQL", value: 72 },
-      { name: "PostgreSQL", value: 70 },
-      { name: "MongoDB", value: 68 },
+      { name: "SQL Server", value: 90 },
+      { name: "EF Core", value: 85 },
+      { name: "Database Design", value: 80 },
     ],
   },
 ];
 
 export const technologies = [
-  "Git",
-  "Docker",
-  "AWS",
-  "Astro",
-  "CI/CD",
-  "Testing",
+  { label: "Git", icon: "git" },
+  { label: "Azure DevOps", icon: "azure-devops" },
+  { label: "Postman", icon: "postman" },
+  { label: "CI/CD", icon: "workflow" },
+  { label: "Testing", icon: "test-tube" },
 ];
+
+export const skillsCopy = {
+  eyebrow: {
+    es: "Stack",
+    en: "Stack",
+  },
+  title: {
+    es: "Skills & Tecnologías",
+    en: "Skills & Technologies",
+  },
+  description: {
+    es: "Herramientas y tecnologías que utilizo para crear soluciones completas",
+    en: "Tools and technologies I use to build complete solutions",
+  },
+};

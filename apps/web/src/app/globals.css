@@ -31,6 +31,34 @@ body {
 
 html {
   scroll-behavior: smooth;
+  scrollbar-color: var(--primary-light) #050505;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid #050505;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--primary), var(--primary-light));
+  box-shadow: 0 0 10px rgba(124, 81, 192, 0.24);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--primary-light), var(--primary));
+  box-shadow: 0 0 12px rgba(124, 81, 192, 0.32);
 }
 
 body::before {
@@ -66,7 +94,7 @@ body::before {
   }
 
   .section-shell {
-    @apply mx-auto w-full max-w-6xl px-5 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24;
+    @apply mx-auto w-full max-w-6xl px-5 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-14;
   }
 
   .btn-primary {
@@ -90,7 +118,7 @@ body::before {
   }
 
   .section-heading h2 {
-    @apply relative mx-auto mt-3 inline-block pb-5 font-title text-4xl font-semibold text-white sm:text-5xl;
+    @apply relative mx-auto mt-2 inline-block pb-4 font-title text-3xl font-semibold text-white sm:text-5xl;
   }
 
   .section-heading h2::after {

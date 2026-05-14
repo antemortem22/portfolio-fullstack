@@ -3,16 +3,11 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { brand } from "@/data/brand";
-
-const navItems = [
-  { label: "Proyectos", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Sobre mí", href: "#about" },
-  { label: "Contacto", href: "#contact" },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 export function Navbar() {
   const [hasScrolled, setHasScrolled] = useState(false);
+  const { locale, setLocale } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,9 +45,9 @@ export function Navbar() {
 
         <div className="flex items-center gap-7">
           <div className="hidden items-center gap-7 text-[12px] font-normal text-zinc-300 md:flex">
-            {navItems.map((item) => (
+            {brand.navItems.map((item) => (
               <a key={item.href} href={item.href} className="transition hover:text-white">
-                {item.label}
+                {item.label[locale]}
               </a>
             ))}
           </div>
@@ -60,12 +55,34 @@ export function Navbar() {
             href={brand.cvUrl}
             className="hidden rounded-md border border-primary-light bg-[#0B0B0F] px-4 py-2 text-[12px] font-medium text-primary-light transition hover:text-white hover:shadow-[0_0_18px_rgba(124,81,192,0.35)] sm:inline-flex"
           >
-            Descargar CV
+            {brand.cvLabel[locale]}
           </a>
           <div className="flex items-center gap-1.5 text-[14px] font-medium uppercase leading-none tracking-wide text-white">
-            <span>EN</span>
+            <button
+              type="button"
+              onClick={() => setLocale("en")}
+              className={`border-b transition ${
+                locale === "en"
+                  ? "border-primary-light text-white"
+                  : "border-transparent text-zinc-400 hover:text-white"
+              }`}
+              aria-pressed={locale === "en"}
+            >
+              EN
+            </button>
             <span className="text-zinc-400">|</span>
-            <span>ES</span>
+            <button
+              type="button"
+              onClick={() => setLocale("es")}
+              className={`border-b transition ${
+                locale === "es"
+                  ? "border-primary-light text-white"
+                  : "border-transparent text-zinc-400 hover:text-white"
+              }`}
+              aria-pressed={locale === "es"}
+            >
+              ES
+            </button>
           </div>
         </div>
       </nav>
