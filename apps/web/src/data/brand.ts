@@ -1,7 +1,7 @@
 export const brand = {
   name: "AGOS",
   initials: "AD",
-  logo: "/icono-ad.png",
+  logo: "/icono-ad.svg",
   cvUrl: "#",
   navItems: [
     { label: "Proyectos", href: "#projects" },

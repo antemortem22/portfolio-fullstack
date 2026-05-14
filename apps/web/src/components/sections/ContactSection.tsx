@@ -1,6 +1,6 @@
 export function ContactSection() {
   return (
-    <section id="contact" className="mx-auto max-w-6xl px-5 py-20">
+    <section id="contact" className="section-shell">
       <div className="mx-auto max-w-4xl border border-white/10 bg-[#111]/90 p-6 shadow-[0_0_45px_rgba(85,56,131,0.16)] sm:p-10">
         <div className="section-heading">
           <p>Contacto</p>

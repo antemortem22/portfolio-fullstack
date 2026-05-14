@@ -17,7 +17,7 @@ export default function Home() {
         <AboutSection />
         <ContactSection />
       </main>
-      <footer className="mx-auto flex max-w-6xl flex-col gap-4 border-t border-white/10 px-5 py-8 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
+      <footer className="site-container flex flex-col gap-4 py-8 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
         <p>© 2026 {brand.name}. Todos los derechos reservados.</p>
         <div className="flex gap-4">
           {brand.socialLinks.map((link) => (

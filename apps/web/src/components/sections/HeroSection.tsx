@@ -4,27 +4,27 @@ import { hero } from "@/data/hero";
 
 export function HeroSection() {
   return (
-    <section className="mx-auto grid min-h-[680px] max-w-6xl items-center gap-12 px-5 py-20 md:grid-cols-[1fr_0.85fr] md:py-28">
-      <div>
+    <section className="site-container grid min-h-[calc(100svh-73px)] items-center gap-10 py-16 sm:py-20 md:grid-cols-[minmax(0,1fr)_minmax(320px,0.82fr)] md:gap-12 lg:min-h-[680px] lg:py-24 xl:gap-16">
+      <div className="max-w-3xl">
         <p className="font-subtitle text-xl italic text-primary-light">{hero.eyebrow.es}</p>
-        <div className="mt-6 flex items-center gap-5">
+        <div className="mt-6 flex flex-wrap items-center gap-4 sm:gap-5">
           <Image
             src={brand.logo}
             alt="Logo AGOS"
             width={96}
             height={96}
-            className="h-20 w-20 object-contain drop-shadow-[0_0_35px_rgba(124,81,192,0.8)] sm:h-24 sm:w-24"
+            className="h-14 w-14 object-contain drop-shadow-[0_12px_18px_rgba(0,0,0,0.72)] sm:h-20 sm:w-20 lg:h-24 lg:w-24"
             priority
           />
-          <h1 className="font-title text-6xl font-semibold tracking-wide text-white sm:text-7xl md:text-8xl">
+          <h1 className="font-title text-5xl font-semibold tracking-wide text-white sm:text-7xl lg:text-8xl">
             {hero.title}
           </h1>
         </div>
-        <h2 className="mt-8 max-w-2xl font-subtitle text-3xl leading-tight text-zinc-100 sm:text-4xl">
+        <h2 className="mt-7 max-w-2xl font-subtitle text-3xl leading-tight text-zinc-100 sm:text-4xl lg:mt-8">
           {hero.tagline.es}
         </h2>
         <p className="mt-5 max-w-xl text-base leading-8 text-zinc-400">{hero.description.es}</p>
-        <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:mt-9">
           <a href={hero.primaryAction.href} className="btn-primary">
             {hero.primaryAction.label}
           </a>
@@ -34,23 +34,15 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="relative min-h-[360px] overflow-hidden rounded-md border border-primary/50 bg-black/50 shadow-[0_0_55px_rgba(85,56,131,0.32)]">
+      <div className="relative min-h-[330px] overflow-hidden rounded-md border border-primary/50 bg-black/50 shadow-[0_0_55px_rgba(85,56,131,0.32)] sm:min-h-[380px] md:min-h-[440px] lg:min-h-[480px]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_45%_35%,rgba(124,81,192,0.32),transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.06),transparent_45%)]" />
         <Image
           src={brand.logo}
           alt=""
           width={380}
           height={380}
-          className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 object-contain opacity-85 drop-shadow-[0_0_58px_rgba(124,81,192,0.9)] sm:h-80 sm:w-80"
+          className="absolute left-1/2 top-[44%] h-56 w-56 -translate-x-1/2 -translate-y-1/2 object-contain opacity-85 drop-shadow-[0_18px_26px_rgba(0,0,0,0.78)] sm:h-72 sm:w-72 lg:h-80 lg:w-80"
         />
-        <div className="absolute bottom-5 left-5 right-5 grid gap-3 sm:grid-cols-3">
-          {hero.stats.map((stat) => (
-            <div key={stat.label} className="border border-white/10 bg-black/55 p-4 backdrop-blur">
-              <p className="font-title text-2xl text-white">{stat.value}</p>
-              <p className="mt-1 text-xs leading-5 text-zinc-400">{stat.label}</p>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );

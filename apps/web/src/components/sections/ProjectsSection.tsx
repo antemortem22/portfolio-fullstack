@@ -2,12 +2,12 @@ import { projects } from "@/data/projects";
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="mx-auto max-w-6xl px-5 py-20">
+    <section id="projects" className="section-shell">
       <div className="section-heading">
         <p>Portfolio</p>
         <h2>Proyectos Destacados</h2>
       </div>
-      <div className="mt-12 grid gap-6 md:grid-cols-3">
+      <div className="mt-10 grid gap-5 sm:mt-12 md:grid-cols-3 lg:gap-6">
         {projects.map((project, index) => (
           <article key={project.title} className="goth-card group overflow-hidden">
             <div className="relative h-40 border-b border-white/10 bg-black">

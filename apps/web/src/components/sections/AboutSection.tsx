@@ -3,19 +3,19 @@ import { profile } from "@/data/profile";
 
 export function AboutSection() {
   return (
-    <section id="about" className="mx-auto max-w-6xl px-5 py-20">
+    <section id="about" className="section-shell">
       <div className="section-heading">
         <p>Profile</p>
         <h2>{profile.title.es}</h2>
       </div>
-      <div className="mt-12 grid items-center gap-10 md:grid-cols-[0.95fr_1fr]">
+      <div className="mt-10 grid items-center gap-8 sm:mt-12 md:grid-cols-[0.95fr_1fr] lg:gap-12">
         <div className="relative overflow-hidden rounded-md border border-primary/60 shadow-[0_0_45px_rgba(85,56,131,0.35)]">
           <Image
             src={profile.image}
             alt="Textura visual del portfolio"
             width={900}
             height={620}
-            className="h-[360px] w-full object-cover opacity-70"
+            className="h-[300px] w-full object-cover opacity-70 sm:h-[360px]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
           <div className="absolute bottom-5 right-5 border border-primary/60 bg-black/80 px-4 py-3 text-right">

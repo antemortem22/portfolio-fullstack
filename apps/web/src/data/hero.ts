@@ -19,10 +19,5 @@ export const hero = {
   secondaryAction: {
     label: "Contactame",
     href: "#contact",
-  },
-  stats: [
-    { value: "2+", label: "años creando experiencias" },
-    { value: "12", label: "proyectos personales" },
-    { value: "100%", label: "curiosidad aplicada" },
-  ],
+  }
 };

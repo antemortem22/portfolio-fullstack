@@ -19,8 +19,13 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "AGOS | Portfolio Fullstack",
-  description: "Portfolio personal fullstack con estetica dark editorial.",
+  title: "AGOS",
+  description: "Portfolio personal fullstack.",
+  icons: {
+    icon: "/faviconAD.svg",
+    shortcut: "/faviconAD.svg",
+    apple: "/faviconAD.svg",
+  },
 };
 
 export default function RootLayout({
