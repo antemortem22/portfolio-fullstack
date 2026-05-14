@@ -1,42 +1,71 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { brand } from "@/data/brand";
 
+const navItems = [
+  { label: "Proyectos", href: "#projects" },
+  { label: "Skills", href: "#skills" },
+  { label: "Sobre mí", href: "#about" },
+  { label: "Contacto", href: "#contact" },
+];
+
 export function Navbar() {
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setHasScrolled(window.scrollY > 12);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur-xl">
-      <nav className="site-container flex items-center justify-between py-4">
-        <a href="#" className="flex items-center gap-3">
+    <header
+      className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${
+        hasScrolled
+          ? "bg-black/45 shadow-[0_12px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl"
+          : "bg-transparent backdrop-blur-0"
+      }`}
+    >
+      <nav className="mx-auto flex w-full max-w-[1180px] items-center justify-between px-8 py-3 lg:px-10">
+        <a href="#" className="flex items-center gap-2">
           <Image
             src={brand.logo}
             alt="Logo AGOS"
-            width={32}
-            height={32}
-            className="h-7 w-7 object-contain drop-shadow-[0_6px_10px_rgba(0,0,0,0.72)] sm:h-8 sm:w-8"
+            width={24}
+            height={24}
+            className="h-6 w-6 object-contain drop-shadow-[0_6px_10px_rgba(0,0,0,0.75)]"
             priority
           />
-          <span className="font-title text-xl font-semibold tracking-wide text-white">
+          <span className="font-title text-lg font-semibold leading-none tracking-wide text-white">
             {brand.name}
           </span>
         </a>
 
-        <div className="hidden items-center gap-5 text-xs uppercase tracking-[0.22em] text-zinc-400 md:flex lg:gap-7">
-          {brand.navItems.map((item) => (
-            <a key={item.href} href={item.href} className="transition hover:text-white">
-              {item.label}
-            </a>
-          ))}
-        </div>
-
-        <div className="flex shrink-0 items-center gap-3">
+        <div className="flex items-center gap-7">
+          <div className="hidden items-center gap-7 text-[12px] font-normal text-zinc-300 md:flex">
+            {navItems.map((item) => (
+              <a key={item.href} href={item.href} className="transition hover:text-white">
+                {item.label}
+              </a>
+            ))}
+          </div>
           <a
             href={brand.cvUrl}
-            className="hidden rounded-sm border border-primary/60 px-4 py-2 text-xs font-semibold text-white shadow-[0_0_24px_rgba(85,56,131,0.28)] transition hover:bg-primary/25 md:inline-flex"
+            className="hidden rounded-md border border-primary-light bg-[#0B0B0F] px-4 py-2 text-[12px] font-medium text-primary-light transition hover:text-white hover:shadow-[0_0_18px_rgba(124,81,192,0.35)] sm:inline-flex"
           >
             Descargar CV
           </a>
-          <div className="flex rounded-sm border border-white/10 bg-white/[0.04] p-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">
-            <span className="rounded-[2px] bg-primary px-2 py-1 text-white">ES</span>
-            <span className="px-2 py-1">EN</span>
+          <div className="flex items-center gap-1.5 text-[14px] font-medium uppercase leading-none tracking-wide text-white">
+            <span>EN</span>
+            <span className="text-zinc-400">|</span>
+            <span>ES</span>
           </div>
         </div>
       </nav>
