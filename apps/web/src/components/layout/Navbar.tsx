@@ -41,7 +41,7 @@ export function Navbar() {
             width={24}
             height={24}
             className="h-6 w-6 object-contain drop-shadow-[0_6px_10px_rgba(0,0,0,0.75)]"
-            priority
+            loading="eager"
           />
           <span className="font-title text-lg font-semibold leading-none tracking-wide text-white">
             {brand.name}

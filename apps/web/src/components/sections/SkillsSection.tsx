@@ -32,7 +32,7 @@ export function SkillsSection() {
       </div>
       <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:grid-cols-3 sm:gap-4 lg:grid-cols-6">
         {technologies.map((tech) => (
-          <div key={tech} className="border border-white/10 bg-white/[0.04] px-4 py-5 text-center text-sm font-semibold text-zinc-200">
+          <div key={tech} className="rounded-[12px] border border-white/10 bg-white/[0.04] px-4 py-5 text-center text-sm font-semibold text-zinc-200">
             {tech}
           </div>
         ))}

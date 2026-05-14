@@ -5,8 +5,8 @@ export const hero = {
   },
   title: "AGOS",
   tagline: {
-    es: "Diseño interfaces oscuras, elegantes y funcionales.",
-    en: "I design dark, elegant and functional interfaces.",
+    es: "Code as ritual, logic as art — turning code into meaning.",
+    en: "Code as ritual, logic as art — turning code into meaning.",
   },
   description: {
     es: "Desarrollo experiencias web con foco en detalle visual, rendimiento y una arquitectura clara para productos digitales.",

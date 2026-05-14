@@ -6,7 +6,9 @@ export function HeroSection() {
   return (
     <section className="site-container grid min-h-[calc(100svh-73px)] items-center gap-10 py-16 sm:py-20 md:grid-cols-[minmax(0,1fr)_minmax(320px,0.82fr)] md:gap-12 lg:min-h-[680px] lg:py-24 xl:gap-16">
       <div className="max-w-3xl">
-        <p className="font-subtitle text-xl italic text-primary-light">{hero.eyebrow.es}</p>
+        <p className="font-subtitle text-2xl italic text-primary-light sm:text-2xl">
+          {hero.eyebrow.es}
+        </p>
         <div className="mt-6 flex flex-wrap items-center gap-4 sm:gap-5">
           <Image
             src={brand.logo}
@@ -14,13 +16,13 @@ export function HeroSection() {
             width={96}
             height={96}
             className="h-14 w-14 object-contain drop-shadow-[0_12px_18px_rgba(0,0,0,0.72)] sm:h-20 sm:w-20 lg:h-24 lg:w-24"
-            priority
+            loading="eager"
           />
-          <h1 className="font-title text-5xl font-semibold tracking-wide text-white sm:text-7xl lg:text-8xl">
+          <h1 className="title-underline hero-title-underline font-title text-5xl font-bold tracking-wide text-white sm:text-7xl lg:text-8xl">
             {hero.title}
           </h1>
         </div>
-        <h2 className="mt-7 max-w-2xl font-subtitle text-3xl leading-tight text-zinc-100 sm:text-4xl lg:mt-8">
+        <h2 className="mt-7 max-w-2xl font-subtitle text-2xl italic leading-tight text-primary-light sm:text-2xl lg:mt-8">
           {hero.tagline.es}
         </h2>
         <p className="mt-5 max-w-xl text-base leading-8 text-zinc-400">{hero.description.es}</p>
@@ -34,7 +36,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="relative min-h-[330px] overflow-hidden rounded-md border border-primary/50 bg-black/50 shadow-[0_0_55px_rgba(85,56,131,0.32)] sm:min-h-[380px] md:min-h-[440px] lg:min-h-[480px]">
+      <div className="relative min-h-[330px] overflow-hidden rounded-[12px] border-2 border-primary-light/70 bg-black/50 shadow-[0_0_34px_rgba(124,81,192,0.38),0_0_70px_rgba(85,56,131,0.28)] sm:min-h-[380px] md:min-h-[440px] lg:min-h-[480px]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_45%_35%,rgba(124,81,192,0.32),transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.06),transparent_45%)]" />
         <Image
           src={brand.logo}
