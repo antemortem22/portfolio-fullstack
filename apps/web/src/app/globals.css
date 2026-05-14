@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050505;
+  --foreground: #f5f1fb;
+  --primary: #553883;
+  --primary-light: #7c51c0;
+  --card: #101010;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --font-sans: var(--font-inter);
+  --font-title: var(--font-playfair);
+  --font-subtitle: var(--font-cormorant);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  content: "";
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.74), rgba(0, 0, 0, 0.9)),
+    url("/portfolio-background.png") center / 560px repeat;
+}
+
+body::after {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background:
+    radial-gradient(circle at 50% 0%, rgba(124, 81, 192, 0.2), transparent 30%),
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+}
+
+::selection {
+  color: white;
+  background: var(--primary);
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-sm bg-primary px-5 py-3 text-sm font-semibold text-white shadow-[0_0_28px_rgba(85,56,131,0.45)] transition hover:bg-primary-light;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-sm border border-primary/60 px-5 py-3 text-sm font-semibold text-white transition hover:bg-primary/25;
+  }
+
+  .goth-card {
+    @apply border border-white/10 bg-[#101010]/90 shadow-[0_0_35px_rgba(85,56,131,0.13)] transition hover:border-primary/60 hover:shadow-[0_0_42px_rgba(85,56,131,0.28)];
+  }
+
+  .section-heading {
+    @apply mx-auto max-w-3xl text-center;
+  }
+
+  .section-heading p {
+    @apply text-xs font-semibold uppercase tracking-[0.35em] text-primary-light;
+  }
+
+  .section-heading h2 {
+    @apply mt-3 font-title text-4xl font-semibold text-white sm:text-5xl;
+  }
+
+  .field-label {
+    @apply grid gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500;
+  }
+
+  .field-input {
+    @apply rounded-sm border border-white/10 bg-black/50 px-4 py-3 text-sm text-white outline-none transition placeholder:text-zinc-700 focus:border-primary/70 focus:shadow-[0_0_24px_rgba(85,56,131,0.22)];
+  }
 }
