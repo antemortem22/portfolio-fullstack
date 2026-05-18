@@ -98,15 +98,22 @@ body::before {
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-sm bg-primary px-5 py-3 text-sm font-semibold text-white shadow-[0_0_28px_rgba(85,56,131,0.45)] transition hover:bg-primary-light;
+    @apply inline-flex items-center justify-center rounded-sm border border-primary-light/45 bg-[linear-gradient(180deg,rgba(124,81,192,0.92)_0%,rgba(85,56,131,0.96)_100%)] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_24px_rgba(124,81,192,0.3),0_0_46px_rgba(85,56,131,0.42),inset_0_1px_0_rgba(255,255,255,0.22)] transition hover:border-primary-light hover:shadow-[0_0_30px_rgba(124,81,192,0.4),0_0_56px_rgba(85,56,131,0.5),inset_0_1px_0_rgba(255,255,255,0.28)];
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-md border border-primary-light bg-[#0B0B0F] px-5 py-3 text-sm font-semibold text-primary-light transition hover:text-white hover:shadow-[0_0_18px_rgba(124,81,192,0.35)];
+    @apply inline-flex items-center justify-center rounded-md border border-primary-light/60 bg-[linear-gradient(180deg,rgba(16,16,20,0.96)_0%,rgba(8,8,12,0.96)_100%)] px-5 py-3 text-sm font-semibold text-primary-light shadow-[0_0_18px_rgba(124,81,192,0.14),inset_0_1px_0_rgba(255,255,255,0.08)] transition hover:border-primary-light hover:text-white hover:shadow-[0_0_24px_rgba(124,81,192,0.28),0_0_44px_rgba(85,56,131,0.24),inset_0_1px_0_rgba(255,255,255,0.14)];
   }
 
   .goth-card {
-    @apply rounded-[12px] border border-white/10 bg-[#101010]/90 shadow-[0_0_35px_rgba(85,56,131,0.13)] transition hover:border-primary/60 hover:shadow-[0_0_42px_rgba(85,56,131,0.28)];
+    @apply relative rounded-[12px] border border-primary-light/18 bg-[linear-gradient(180deg,rgba(19,19,24,0.94)_0%,rgba(11,11,16,0.96)_100%)] shadow-[0_0_28px_rgba(124,81,192,0.12),0_0_62px_rgba(85,56,131,0.12),inset_0_1px_0_rgba(255,255,255,0.06)] transition hover:border-primary-light/55 hover:shadow-[0_0_34px_rgba(124,81,192,0.22),0_0_76px_rgba(85,56,131,0.24),inset_0_1px_0_rgba(255,255,255,0.1)];
+  }
+
+  .goth-card::before {
+    @apply pointer-events-none absolute inset-0 rounded-[12px] content-[''];
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0) 22%),
+      radial-gradient(circle at 50% 0%, rgba(124, 81, 192, 0.16), transparent 46%);
   }
 
   .section-heading {

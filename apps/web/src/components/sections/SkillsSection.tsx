@@ -82,7 +82,7 @@ function SkillIcon({ icon, compact = false }: { icon: string; compact?: boolean 
 
   return (
     <span
-      className="inline-flex h-11 w-11 items-center justify-center rounded-[10px] bg-primary/70 text-primary-light shadow-[0_0_20px_rgba(124,81,192,0.18)]"
+      className="inline-flex h-11 w-11 items-center justify-center rounded-[10px] border border-primary-light/30 bg-[linear-gradient(180deg,rgba(124,81,192,0.3)_0%,rgba(85,56,131,0.7)_100%)] text-primary-light shadow-[0_0_20px_rgba(124,81,192,0.22),inset_0_1px_0_rgba(255,255,255,0.12)]"
     >
       {content}
     </span>
@@ -102,7 +102,7 @@ export function SkillsSection() {
         </p>
       </div>
 
-      <div className="mt-8 grid gap-4 sm:mt-10 md:grid-cols-3 lg:gap-5">
+      <div className="mt-8 grid gap-5 sm:mt-10 sm:gap-7 md:grid-cols-3 lg:gap-9">
         {skillGroups.map((group) => (
           <article key={group.title} className="goth-card p-5">
             <div className="flex items-center gap-4">
@@ -130,11 +130,11 @@ export function SkillsSection() {
         ))}
       </div>
 
-      <div className="mt-5 flex flex-wrap justify-center gap-3">
+      <div className="mt-6 flex flex-wrap justify-center gap-4 sm:mt-7 sm:gap-6">
         {technologies.map((tech) => (
           <div
             key={tech.label}
-            className="flex min-h-16 w-full max-w-[170px] flex-[1_1_130px] flex-col items-center justify-center gap-1.5 rounded-[12px] border border-white/10 bg-[#101010]/90 px-4 py-3 text-center text-sm font-medium text-zinc-100 shadow-[0_0_28px_rgba(85,56,131,0.1)]"
+            className="flex min-h-16 w-full max-w-[170px] flex-[1_1_130px] flex-col items-center justify-center gap-1.5 rounded-[12px] border border-primary-light/16 bg-[linear-gradient(180deg,rgba(19,19,24,0.94)_0%,rgba(11,11,16,0.96)_100%)] px-4 py-3 text-center text-sm font-medium text-zinc-100 shadow-[0_0_24px_rgba(124,81,192,0.1),0_0_52px_rgba(85,56,131,0.1),inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:border-primary-light/40 hover:shadow-[0_0_28px_rgba(124,81,192,0.18),0_0_64px_rgba(85,56,131,0.16),inset_0_1px_0_rgba(255,255,255,0.08)]"
           >
             <SkillIcon icon={tech.icon} compact />
             <span>{tech.label}</span>

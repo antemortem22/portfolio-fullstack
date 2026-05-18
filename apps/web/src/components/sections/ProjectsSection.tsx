@@ -12,7 +12,7 @@ export function ProjectsSection() {
         <p>{projectsCopy.eyebrow[locale]}</p>
         <h2>{projectsCopy.title[locale]}</h2>
       </div>
-      <div className="mt-7 grid gap-4 sm:mt-12 sm:gap-5 md:grid-cols-3 lg:gap-6">
+      <div className="mt-7 grid gap-5 sm:mt-12 sm:gap-7 md:grid-cols-3 lg:gap-9">
         {projects.map((project, index) => (
           <article key={project.title} className="goth-card group overflow-hidden">
             <div className="relative h-28 border-b border-white/10 bg-black sm:h-40">
@@ -37,9 +37,22 @@ export function ProjectsSection() {
                   </span>
                 ))}
               </div>
-              <a href={project.href} className="mt-4 inline-flex text-sm font-semibold text-primary-light sm:mt-6">
-                {projectsCopy.linkLabel[locale]}
-              </a>
+              <div className="mt-4 flex flex-col items-start gap-1.5 sm:mt-6">
+                <a
+                  href={project.repositoryUrl}
+                  className="inline-flex text-sm font-semibold text-primary-light transition hover:text-white"
+                >
+                  {projectsCopy.repositoryLabel[locale]} <span className="ml-2">→</span>
+                </a>
+                {project.projectUrl ? (
+                  <a
+                    href={project.projectUrl}
+                    className="inline-flex text-sm font-semibold text-primary-light transition hover:text-white"
+                  >
+                    {projectsCopy.projectLabel[locale]} <span className="ml-2">→</span>
+                  </a>
+                ) : null}
+              </div>
             </div>
           </article>
         ))}

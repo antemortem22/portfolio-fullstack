@@ -7,7 +7,11 @@ export const profile = {
     es: "Sobre mí",
     en: "About me",
   },
-  image: "/portfolio-background.png",
+  image: "/about-photo.jpeg",
+  imageAlt: {
+    es: "Retrato de Agos en la sección sobre mí",
+    en: "Portrait of Agos in the about section",
+  },
   paragraphs: {
     es: [
       "Soy desarrolladora full-stack, enfocada en construir aplicaciones web modernas, escalables y mantenibles.",

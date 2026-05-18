@@ -26,7 +26,7 @@ export function Footer() {
   const { locale } = useLanguage();
 
   return (
-    <footer className="site-container flex flex-col gap-4 py-8 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
+    <footer className="flex w-full flex-col gap-4 px-4 py-8 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
       <p>
         © 2026 {brand.name}. {brand.footerRights[locale]}
       </p>

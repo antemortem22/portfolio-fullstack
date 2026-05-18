@@ -43,16 +43,17 @@ export function HeroSection() {
 
       <TiltCard
         intensity={7}
-        className="relative min-h-[240px] overflow-hidden rounded-[12px] border-2 border-primary-light/70 bg-black/50 shadow-[0_0_34px_rgba(124,81,192,0.38),0_0_70px_rgba(85,56,131,0.28)] sm:min-h-[340px] md:min-h-[380px] lg:min-h-[420px]"
+        className="relative min-h-[340px] overflow-hidden rounded-[12px] border-2 border-primary-light/75 bg-[linear-gradient(180deg,rgba(10,10,14,0.84)_0%,rgba(5,5,8,0.76)_100%)] shadow-[0_0_36px_rgba(124,81,192,0.44),0_0_92px_rgba(85,56,131,0.34),inset_0_1px_0_rgba(255,255,255,0.08)] sm:min-h-[420px] md:min-h-[380px] lg:min-h-[420px]"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_45%_35%,rgba(124,81,192,0.32),transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.06),transparent_45%)]" />
         <Image
-          src={brand.logo}
-          alt=""
-          width={380}
-          height={380}
-          className="absolute left-1/2 top-[44%] h-44 w-44 -translate-x-1/2 -translate-y-1/2 object-contain opacity-85 drop-shadow-[0_18px_26px_rgba(0,0,0,0.78)] sm:h-72 sm:w-72 lg:h-80 lg:w-80"
+          src={hero.image}
+          alt={hero.imageAlt[locale]}
+          fill
+          sizes="(max-width: 767px) 100vw, 42vw"
+          className="object-cover object-[center_12%] sm:object-[center_14%] md:object-[center_20%] lg:object-[center_18%]"
+          priority
         />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.05)_0%,rgba(255,255,255,0)_18%,rgba(4,4,6,0.14)_48%,rgba(4,4,6,0.34)_100%),radial-gradient(circle_at_50%_0%,rgba(124,81,192,0.2),transparent_48%)]" />
       </TiltCard>
     </section>
   );

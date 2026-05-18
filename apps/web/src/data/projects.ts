@@ -7,7 +7,8 @@ export const projects = [
       en: "Dark dashboard for organizing metrics, tasks and product states with clear readability.",
     },
     tags: ["Next.js", "Tailwind", "TypeScript"],
-    href: "#",
+    repositoryUrl: "#",
+    projectUrl: "#",
   },
   {
     title: "Nocturne UI",
@@ -17,7 +18,8 @@ export const projects = [
       en: "Visual library with reusable components, tokens and editorial patterns.",
     },
     tags: ["React", "CSS", "UI"],
-    href: "#",
+    repositoryUrl: "#",
+    projectUrl: "#",
   },
   {
     title: "Velvet Task",
@@ -27,7 +29,7 @@ export const projects = [
       en: "Task application with a minimal, dark and focused experience.",
     },
     tags: ["Next.js", "Forms", "UX"],
-    href: "#",
+    repositoryUrl: "#",
   },
 ];
 
@@ -40,7 +42,11 @@ export const projectsCopy = {
     es: "Proyectos Destacados",
     en: "Featured Projects",
   },
-  linkLabel: {
+  repositoryLabel: {
+    es: "Ver repositorio",
+    en: "View repository",
+  },
+  projectLabel: {
     es: "Ver proyecto",
     en: "View project",
   },

@@ -46,12 +46,12 @@ export function AboutSection() {
           <div className="relative overflow-hidden rounded-[12px] border-2 border-primary-light shadow-[0_0_30px_rgba(124,81,192,0.48),0_0_76px_rgba(85,56,131,0.3)]">
             <Image
               src={profile.image}
-              alt="Textura visual del portfolio"
+              alt={profile.imageAlt[locale]}
               width={980}
               height={720}
-              className="h-[240px] w-full object-cover opacity-80 sm:h-[360px] lg:h-[390px]"
+              className="h-[320px] w-full object-cover object-[center_12%] sm:h-[420px] sm:object-[center_14%] lg:h-[390px] lg:object-[center_18%]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/12" />
           </div>
 
           <div className="absolute bottom-0 right-0 rounded-[12px] border-2 border-primary-light bg-[#0B0B0F] px-5 py-3.5 text-center shadow-[0_0_24px_rgba(124,81,192,0.42)]">
