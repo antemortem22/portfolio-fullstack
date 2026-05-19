@@ -7,7 +7,7 @@ export const profile = {
     es: "Sobre mí",
     en: "About me",
   },
-  image: "/about-photo.jpeg",
+  image: "/about-photo-v2.jpg",
   imageAlt: {
     es: "Retrato de Agos en la sección sobre mí",
     en: "Portrait of Agos in the about section",

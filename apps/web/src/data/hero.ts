@@ -1,6 +1,6 @@
 export const hero = {
   title: "AGOS",
-  image: "/hero-photo.jpg",
+  image: "/hero-photo-v2.jpg",
   imageAlt: {
     es: "Retrato principal de Agos para la portada del portfolio",
     en: "Main portrait of Agos for the portfolio hero section",
