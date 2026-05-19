@@ -25,8 +25,20 @@ export const profile = {
     ],
   },
   links: [
-    { label: { es: "GitHub", en: "GitHub" }, icon: "github", href: "https://github.com/" },
-    { label: { es: "LinkedIn", en: "LinkedIn" }, icon: "linkedin", href: "https://www.linkedin.com/" },
-    { label: { es: "Descargar CV", en: "Download CV" }, icon: "download", href: "#", variant: "primary" },
+    { label: { es: "GitHub", en: "GitHub" }, icon: "github", href: "https://github.com/antemortem22" },
+    {
+      label: { es: "LinkedIn", en: "LinkedIn" },
+      icon: "linkedin",
+      href: "https://www.linkedin.com/in/agostina-di-napoli/",
+    },
+    {
+      label: { es: "Descargar CV", en: "Download CV" },
+      icon: "download",
+      href: {
+        es: "/cv-agostina-di-napoli-es.pdf",
+        en: "/cv-agostina-di-napoli-en.pdf",
+      },
+      variant: "primary",
+    },
   ],
 };

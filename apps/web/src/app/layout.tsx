@@ -20,7 +20,7 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "AGOS",
+  title: "AD | Portfolio",
   description: "Portfolio personal fullstack.",
   icons: {
     icon: "/faviconAD.svg",

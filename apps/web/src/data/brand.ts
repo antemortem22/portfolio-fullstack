@@ -2,7 +2,10 @@ export const brand = {
   name: "AGOS",
   initials: "AD",
   logo: "/icono-ad.svg",
-  cvUrl: "#",
+  cvUrl: {
+    es: "/cv-agostina-di-napoli-es.pdf",
+    en: "/cv-agostina-di-napoli-en.pdf",
+  },
   navItems: [
     { label: { es: "Proyectos", en: "Projects" }, href: "#projects" },
     { label: { es: "Skills", en: "Skills" }, href: "#skills" },
@@ -18,7 +21,7 @@ export const brand = {
     en: "All rights reserved.",
   },
   socialLinks: [
-    { label: "GitHub", href: "https://github.com/" },
-    { label: "LinkedIn", href: "https://www.linkedin.com/" },
+    { label: "GitHub", href: "https://github.com/antemortem22" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/agostina-di-napoli/" },
   ],
 };

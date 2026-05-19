@@ -35,6 +35,8 @@ export function ContactSection() {
           {linkedin ? (
             <a
               href={linkedin.href}
+              target="_blank"
+              rel="noreferrer"
               className="mt-3 block text-sm font-semibold text-primary-light transition hover:text-white"
             >
               {contact.unavailable.linkedinLabel[locale]}

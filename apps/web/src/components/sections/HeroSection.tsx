@@ -10,7 +10,10 @@ export function HeroSection() {
   const { locale } = useLanguage();
 
   return (
-    <section className="site-container grid min-h-[100svh] items-center gap-6 py-10 sm:gap-8 sm:py-16 md:grid-cols-[minmax(0,1fr)_minmax(320px,0.82fr)] md:gap-10 lg:py-18 xl:gap-12">
+    <section
+      id="hero"
+      className="site-container grid min-h-[100svh] items-center gap-6 py-10 sm:gap-8 sm:py-16 md:grid-cols-[minmax(0,1fr)_minmax(320px,0.82fr)] md:gap-10 lg:py-18 xl:gap-12"
+    >
       <div className="max-w-3xl">
         <div className="flex flex-wrap items-center gap-3 sm:gap-5">
           <Image

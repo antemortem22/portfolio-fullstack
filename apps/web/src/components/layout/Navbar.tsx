@@ -43,7 +43,7 @@ export function Navbar() {
     >
       <nav className="flex w-full items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <a
-          href="#"
+          href="#hero"
           onClick={closeMenu}
           className={`flex items-center gap-2 transition duration-300 md:translate-y-0 md:opacity-100 ${
             isHeaderActive
@@ -73,7 +73,9 @@ export function Navbar() {
             ))}
           </div>
           <a
-            href={brand.cvUrl}
+            href={brand.cvUrl[locale]}
+            target="_blank"
+            rel="noreferrer"
             className="hidden rounded-md border border-primary-light bg-[#0B0B0F] px-4 py-2 text-[12px] font-medium text-primary-light transition hover:text-white hover:shadow-[0_0_18px_rgba(124,81,192,0.35)] sm:inline-flex"
           >
             {brand.cvLabel[locale]}
@@ -180,7 +182,9 @@ export function Navbar() {
             ))}
           </div>
           <a
-            href={brand.cvUrl}
+            href={brand.cvUrl[locale]}
+            target="_blank"
+            rel="noreferrer"
             onClick={closeMenu}
             className="inline-flex items-center border-b border-primary-light/40 py-4 text-[15px] font-medium text-primary-light transition hover:text-white"
           >

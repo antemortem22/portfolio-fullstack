@@ -1,35 +1,50 @@
-export const projects = [
+export type Project = {
+  title: string;
+  category: string;
+  description: {
+    es: string;
+    en: string;
+  };
+  tags: string[];
+  repositoryUrl: string;
+  projectUrl?: string;
+  image?: string;
+  imageAlt?: {
+    es: string;
+    en: string;
+  };
+};
+
+export const projects: Project[] = [
   {
-    title: "Lunar Desk",
-    category: "Dashboard",
+    title: "Portfolio",
+    category: "Landing Page",
     description: {
-      es: "Panel oscuro para organizar métricas, tareas y estados de producto con una lectura clara.",
-      en: "Dark dashboard for organizing metrics, tasks and product states with clear readability.",
+      es: "Landing page inspirada en una estética dark editorial, desarrollada para combinar identidad visual, branding personalizado y una experiencia enfocada en destacar proyectos y tecnologías de manera moderna e inmersiva.",
+      en: "Landing page inspired by a dark editorial aesthetic, developed to combine visual identity, personalized branding and an experience focused on showcasing projects and technologies in a modern and immersive way.",
     },
-    tags: ["Next.js", "Tailwind", "TypeScript"],
-    repositoryUrl: "#",
-    projectUrl: "#",
+    tags: ["React", "TypeScript", "Tailwind", "Next.js"],
+    repositoryUrl: "https://github.com/antemortem22/portfolio-fullstack",
+    image: "/project-portfolio-cropped.png",
+    imageAlt: {
+      es: "Vista previa del proyecto Portfolio",
+      en: "Preview of the Portfolio project",
+    },
   },
   {
-    title: "Nocturne UI",
-    category: "Design System",
+    title: "Restaurant App",
+    category: "Web App",
     description: {
-      es: "Biblioteca visual con componentes reutilizables, tokens y patrones editoriales.",
-      en: "Visual library with reusable components, tokens and editorial patterns.",
+      es: "Aplicación desarrollada como challenge técnico, enfocada en la gestión de reservas gastronómicas mediante una experiencia administrativa integrada, lógica de negocio clara y administración eficiente de disponibilidad y reservas.",
+      en: "Application developed as a technical challenge for restaurant reservation management, combining operational administration, business validations and availability handling.",
     },
-    tags: ["React", "CSS", "UI"],
-    repositoryUrl: "#",
-    projectUrl: "#",
-  },
-  {
-    title: "Velvet Task",
-    category: "Productivity",
-    description: {
-      es: "Aplicación de tareas con una experiencia minimalista, oscura y enfocada.",
-      en: "Task application with a minimal, dark and focused experience.",
+    tags: ["Blazor Server", ".NET 8", "SQL Server"],
+    repositoryUrl: "https://github.com/antemortem22/RestaurantApp",
+    image: "/project-restaurant-app.png",
+    imageAlt: {
+      es: "Vista previa del proyecto Restaurant App",
+      en: "Preview of the Restaurant App project",
     },
-    tags: ["Next.js", "Forms", "UX"],
-    repositoryUrl: "#",
   },
 ];
 

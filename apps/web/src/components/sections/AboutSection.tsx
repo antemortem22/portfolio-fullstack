@@ -70,10 +70,17 @@ export function AboutSection() {
             ))}
           </div>
           <div className="mt-5 grid gap-3 sm:mt-6 sm:grid-cols-3">
-            {profile.links.map((link) => (
+            {profile.links.map((link) => {
+                const href = typeof link.href === "string" ? link.href : link.href[locale];
+                const opensInNewTab =
+                  link.icon === "download" || href.startsWith("http://") || href.startsWith("https://");
+
+                return (
               <a
-                key={link.href}
-                href={link.href}
+                key={link.icon}
+                href={href}
+                target={opensInNewTab ? "_blank" : undefined}
+                rel={opensInNewTab ? "noreferrer" : undefined}
                 className={
                   link.variant === "primary"
                     ? "inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-md bg-primary px-3 text-sm font-semibold text-white shadow-[0_0_28px_rgba(85,56,131,0.45)] transition hover:bg-primary-light"
@@ -83,7 +90,8 @@ export function AboutSection() {
                 <AboutLinkIcon icon={link.icon} />
                 {link.label[locale]}
               </a>
-            ))}
+                );
+              })}
           </div>
         </div>
       </div>

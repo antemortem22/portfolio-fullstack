@@ -3,27 +3,27 @@ export const skillGroups = [
     title: "Frontend",
     icon: "code",
     skills: [
-      { name: "React / Next.js", value: 90 },
-      { name: "TypeScript", value: 85 },
-      { name: "Tailwind CSS", value: 92 },
+      { name: "React / Next.js", value: 50},
+      { name: "TypeScript", value: 40 },
+      { name: "Tailwind CSS", value: 65 },
     ],
   },
   {
     title: "Backend",
     icon: "server",
     skills: [
-      { name: ".NET / C#", value: 90 },
-      { name: "Testing", value: 65 },
-      { name: "API Design", value: 90 },
+      { name: ".NET / C#", value: 85 },
+      { name: "Testing", value: 45 },
+      { name: "API Design", value: 80 },
     ],
   },
   {
     title: "Database",
     icon: "database",
     skills: [
-      { name: "SQL Server", value: 90 },
-      { name: "EF Core", value: 85 },
-      { name: "Database Design", value: 80 },
+      { name: "SQL Server", value: 70 },
+      { name: "EF Core", value: 78 },
+      { name: "Database Design", value: 70 },
     ],
   },
 ];

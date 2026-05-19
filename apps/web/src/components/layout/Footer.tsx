@@ -35,6 +35,8 @@ export function Footer() {
           <a
             key={link.label}
             href={link.href}
+            target="_blank"
+            rel="noreferrer"
             aria-label={link.label}
             className="inline-flex h-8 w-8 items-center justify-center rounded-full text-zinc-500 transition hover:text-primary-light"
           >
