@@ -126,10 +126,10 @@ feature → dev → test → main
 
 ### 🎨 Landing MVP
 - [x] Bootstrap Next.js frontend
-- [ ] Build responsive landing page
-- [ ] Implement EN/ES support
-- [ ] Add mocked portfolio data
-- [ ] Deploy to Vercel
+- [x] Build responsive landing page
+- [x] Implement EN/ES support
+- [x] Add mocked portfolio data
+- [x] Deploy to Vercel
 
 ### 🧩 Backend Services
 - [ ] Portfolio Service (.NET 9)
