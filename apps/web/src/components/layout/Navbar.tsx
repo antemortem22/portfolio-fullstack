@@ -2,14 +2,16 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { brand } from "@/data/brand";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 import { useLanguage } from "@/context/LanguageContext";
+import { brand } from "@/data/brand";
 
 export function Navbar() {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { locale, setLocale } = useLanguage();
   const isHeaderActive = hasScrolled || isMenuOpen;
+  const cvHref = brand.cvUrl[locale];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,14 +74,12 @@ export function Navbar() {
               </a>
             ))}
           </div>
-          <a
-            href={brand.cvUrl[locale]}
-            target="_blank"
-            rel="noreferrer"
+          <ExternalLink
+            href={cvHref}
             className="hidden rounded-md border border-primary-light bg-[#0B0B0F] px-4 py-2 text-[12px] font-medium text-primary-light transition hover:text-white hover:shadow-[0_0_18px_rgba(124,81,192,0.35)] sm:inline-flex"
           >
             {brand.cvLabel[locale]}
-          </a>
+          </ExternalLink>
           <button
             type="button"
             onClick={() => setIsMenuOpen((current) => !current)}
@@ -181,15 +181,13 @@ export function Navbar() {
               </a>
             ))}
           </div>
-          <a
-            href={brand.cvUrl[locale]}
-            target="_blank"
-            rel="noreferrer"
+          <ExternalLink
+            href={cvHref}
             onClick={closeMenu}
             className="inline-flex items-center border-b border-primary-light/40 py-4 text-[15px] font-medium text-primary-light transition hover:text-white"
           >
             <span>{brand.cvLabel[locale]}</span>
-          </a>
+          </ExternalLink>
         </div>
       </div>
     </header>

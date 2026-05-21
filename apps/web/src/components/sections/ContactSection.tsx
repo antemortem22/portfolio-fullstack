@@ -1,8 +1,9 @@
 "use client";
 
-import { contact } from "@/data/contact";
-import { brand } from "@/data/brand";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 import { useLanguage } from "@/context/LanguageContext";
+import { brand } from "@/data/brand";
+import { contact } from "@/data/contact";
 
 export function ContactSection() {
   const { locale } = useLanguage();
@@ -33,49 +34,14 @@ export function ContactSection() {
             {contact.unavailable.email}
           </a>
           {linkedin ? (
-            <a
+            <ExternalLink
               href={linkedin.href}
-              target="_blank"
-              rel="noreferrer"
               className="mt-3 block text-sm font-semibold text-primary-light transition hover:text-white"
             >
               {contact.unavailable.linkedinLabel[locale]}
-            </a>
+            </ExternalLink>
           ) : null}
         </div>
-
-        {/* Form temporarily disabled until the messaging service is ready.
-        <form className="mt-7 grid gap-4">
-          <div className="grid gap-4 sm:grid-cols-2">
-            <label className="field-label">
-              {contact.fields.name.label[locale]}
-              <input
-                className="field-input"
-                type="text"
-                placeholder={contact.fields.name.placeholder[locale]}
-              />
-            </label>
-            <label className="field-label">
-              {contact.fields.email.label[locale]}
-              <input
-                className="field-input"
-                type="email"
-                placeholder={contact.fields.email.placeholder[locale]}
-              />
-            </label>
-          </div>
-          <label className="field-label">
-            {contact.fields.message.label[locale]}
-            <textarea
-              className="field-input min-h-28 resize-none"
-              placeholder={contact.fields.message.placeholder[locale]}
-            />
-          </label>
-          <button type="button" className="btn-primary mx-auto">
-            {contact.buttonLabel[locale]}
-          </button>
-        </form>
-        */}
       </div>
     </section>
   );

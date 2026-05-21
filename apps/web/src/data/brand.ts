@@ -1,4 +1,6 @@
-export const brand = {
+import type { BrandData } from "@/types/content";
+
+export const brand: BrandData = {
   name: "AGOS",
   initials: "AD",
   logo: "/icono-ad.svg",

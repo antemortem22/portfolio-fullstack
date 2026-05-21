@@ -1,4 +1,6 @@
-export const profile = {
+import type { ProfileData } from "@/types/content";
+
+export const profile: ProfileData = {
   eyebrow: {
     es: "Perfil",
     en: "Profile",

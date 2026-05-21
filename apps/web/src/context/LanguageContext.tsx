@@ -2,8 +2,7 @@
 
 import { createContext, useContext, useMemo, useState } from "react";
 import type { ReactNode } from "react";
-
-export type Locale = "es" | "en";
+import type { Locale } from "@/types/content";
 
 type LanguageContextValue = {
   locale: Locale;

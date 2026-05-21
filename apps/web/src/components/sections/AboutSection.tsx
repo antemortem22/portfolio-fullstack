@@ -1,10 +1,20 @@
 "use client";
 
 import Image from "next/image";
-import { profile } from "@/data/profile";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 import { useLanguage } from "@/context/LanguageContext";
+import { profile } from "@/data/profile";
+import type { Locale, ProfileLink, ProfileLinkIcon } from "@/types/content";
 
-function AboutLinkIcon({ icon }: { icon: string }) {
+function resolveProfileLinkHref(link: ProfileLink, locale: Locale) {
+  return typeof link.href === "string" ? link.href : link.href[locale];
+}
+
+function shouldOpenInNewTab(href: string) {
+  return href.startsWith("http://") || href.startsWith("https://") || href.endsWith(".pdf");
+}
+
+function AboutLinkIcon({ icon }: { icon: ProfileLinkIcon }) {
   if (icon === "github") {
     return (
       <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
@@ -28,6 +38,25 @@ function AboutLinkIcon({ icon }: { icon: string }) {
     <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
       <path d="M13 4h-2v8.17L7.41 8.59 6 10l6 6 6-6-1.41-1.41L13 12.17V4Zm-7 14v2h12v-2H6Z" />
     </svg>
+  );
+}
+
+function ProfileLinkButton({ link, locale }: { link: ProfileLink; locale: Locale }) {
+  const href = resolveProfileLinkHref(link, locale);
+
+  return (
+    <ExternalLink
+      href={href}
+      newTab={shouldOpenInNewTab(href)}
+      className={
+        link.variant === "primary"
+          ? "inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-md bg-primary px-3 text-sm font-semibold text-white shadow-[0_0_28px_rgba(85,56,131,0.45)] transition hover:bg-primary-light"
+          : "inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-md border border-primary-light bg-[#0B0B0F] px-3 text-sm font-semibold text-primary-light transition hover:text-white hover:shadow-[0_0_16px_rgba(124,81,192,0.32)]"
+      }
+    >
+      <AboutLinkIcon icon={link.icon} />
+      {link.label[locale]}
+    </ExternalLink>
   );
 }
 
@@ -70,28 +99,9 @@ export function AboutSection() {
             ))}
           </div>
           <div className="mt-5 grid gap-3 sm:mt-6 sm:grid-cols-3">
-            {profile.links.map((link) => {
-                const href = typeof link.href === "string" ? link.href : link.href[locale];
-                const opensInNewTab =
-                  link.icon === "download" || href.startsWith("http://") || href.startsWith("https://");
-
-                return (
-              <a
-                key={link.icon}
-                href={href}
-                target={opensInNewTab ? "_blank" : undefined}
-                rel={opensInNewTab ? "noreferrer" : undefined}
-                className={
-                  link.variant === "primary"
-                    ? "inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-md bg-primary px-3 text-sm font-semibold text-white shadow-[0_0_28px_rgba(85,56,131,0.45)] transition hover:bg-primary-light"
-                    : "inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-md border border-primary-light bg-[#0B0B0F] px-3 text-sm font-semibold text-primary-light transition hover:text-white hover:shadow-[0_0_16px_rgba(124,81,192,0.32)]"
-                }
-              >
-                <AboutLinkIcon icon={link.icon} />
-                {link.label[locale]}
-              </a>
-                );
-              })}
+            {profile.links.map((link) => (
+              <ProfileLinkButton key={link.icon} link={link} locale={locale} />
+            ))}
           </div>
         </div>
       </div>

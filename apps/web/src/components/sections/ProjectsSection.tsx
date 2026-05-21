@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { projects, projectsCopy } from "@/data/projects";
+import { ExternalLink } from "@/components/ui/ExternalLink";
 import { useLanguage } from "@/context/LanguageContext";
+import { projects, projectsCopy } from "@/data/projects";
 
 export function ProjectsSection() {
   const { locale } = useLanguage();
@@ -22,7 +23,7 @@ export function ProjectsSection() {
         }`}
       >
         {projects.map((project) => (
-          <article key={project.title} className="goth-card group overflow-hidden">
+          <article key={project.id} className="goth-card group overflow-hidden">
             <div className="relative h-36 border-b border-white/10 bg-black sm:h-40">
               {project.image ? (
                 <>
@@ -54,23 +55,19 @@ export function ProjectsSection() {
                 ))}
               </div>
               <div className="mt-4 flex flex-col items-start gap-1.5 sm:mt-5">
-                <a
+                <ExternalLink
                   href={project.repositoryUrl}
-                  target="_blank"
-                  rel="noreferrer"
                   className="inline-flex text-sm font-semibold text-primary-light transition hover:text-white"
                 >
-                  {projectsCopy.repositoryLabel[locale]} <span className="ml-2">→</span>
-                </a>
+                  {projectsCopy.repositoryLabel[locale]} <span className="ml-2">-&gt;</span>
+                </ExternalLink>
                 {project.projectUrl ? (
-                  <a
+                  <ExternalLink
                     href={project.projectUrl}
-                    target="_blank"
-                    rel="noreferrer"
                     className="inline-flex text-sm font-semibold text-primary-light transition hover:text-white"
                   >
-                    {projectsCopy.projectLabel[locale]} <span className="ml-2">→</span>
-                  </a>
+                    {projectsCopy.projectLabel[locale]} <span className="ml-2">-&gt;</span>
+                  </ExternalLink>
                 ) : null}
               </div>
             </div>

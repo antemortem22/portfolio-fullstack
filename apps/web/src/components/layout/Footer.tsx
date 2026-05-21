@@ -1,9 +1,11 @@
 "use client";
 
+import { ExternalLink } from "@/components/ui/ExternalLink";
 import { useLanguage } from "@/context/LanguageContext";
 import { brand } from "@/data/brand";
+import type { SocialPlatform } from "@/types/content";
 
-function SocialIcon({ label }: { label: string }) {
+function SocialIcon({ label }: { label: SocialPlatform }) {
   if (label === "GitHub") {
     return (
       <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
@@ -32,16 +34,14 @@ export function Footer() {
       </p>
       <div className="flex gap-4">
         {brand.socialLinks.map((link) => (
-          <a
+          <ExternalLink
             key={link.label}
             href={link.href}
-            target="_blank"
-            rel="noreferrer"
             aria-label={link.label}
             className="inline-flex h-8 w-8 items-center justify-center rounded-full text-zinc-500 transition hover:text-primary-light"
           >
             <SocialIcon label={link.label} />
-          </a>
+          </ExternalLink>
         ))}
       </div>
     </footer>

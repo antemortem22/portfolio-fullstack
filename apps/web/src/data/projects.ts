@@ -1,22 +1,11 @@
-export type Project = {
-  title: string;
-  category: string;
-  description: {
-    es: string;
-    en: string;
-  };
-  tags: string[];
-  repositoryUrl: string;
-  projectUrl?: string;
-  image?: string;
-  imageAlt?: {
-    es: string;
-    en: string;
-  };
-};
+import type { Project } from "@/types/content";
 
 export const projects: Project[] = [
   {
+    id: "portfolio-landing",
+    slug: "portfolio-landing",
+    published: true,
+    order: 1,
     title: "Portfolio",
     category: "Landing Page",
     description: {
@@ -32,6 +21,10 @@ export const projects: Project[] = [
     },
   },
   {
+    id: "restaurant-app",
+    slug: "restaurant-app",
+    published: true,
+    order: 2,
     title: "Restaurant App",
     category: "Web App",
     description: {
