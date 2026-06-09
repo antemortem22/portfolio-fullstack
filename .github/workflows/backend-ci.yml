@@ -1,0 +1,32 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/backend-ci.yml"
+      - "services/portfolio-service/**"
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/backend-ci.yml"
+      - "services/portfolio-service/**"
+
+jobs:
+  build-backend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore services/portfolio-service/Portfolio.Api.slnx
+
+      - name: Build solution
+        run: dotnet build services/portfolio-service/Portfolio.Api.slnx --configuration Release --no-restore
