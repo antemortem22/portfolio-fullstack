@@ -21,5 +21,5 @@ public partial class HeroSection
 
     public DateTime? UpdatedAt { get; set; }
 
-    public virtual PortfolioEntity Portfolio { get; set; } = null!;
+    public virtual Portfolio Portfolio { get; set; } = null!;
 }

@@ -31,9 +31,9 @@ public partial class Project
 
     public DateTime? UpdatedAt { get; set; }
 
-    public int Status { get; set; }
+    public ProjectStatus Status { get; set; }
 
-    public virtual PortfolioEntity Portfolio { get; set; } = null!;
+    public virtual Portfolio Portfolio { get; set; } = null!;
 
     public virtual ICollection<ProjectTag> ProjectTags { get; set; } = new List<ProjectTag>();
 }

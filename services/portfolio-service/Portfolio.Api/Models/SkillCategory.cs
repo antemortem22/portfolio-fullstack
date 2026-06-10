@@ -13,7 +13,7 @@ public partial class SkillCategory
 
     public int DisplayOrder { get; set; }
 
-    public virtual PortfolioEntity Portfolio { get; set; } = null!;
+    public virtual Portfolio Portfolio { get; set; } = null!;
 
     public virtual ICollection<Skill> Skills { get; set; } = new List<Skill>();
 }

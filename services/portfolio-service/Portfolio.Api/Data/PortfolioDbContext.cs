@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Portfolio.Api.Models;
+using PortfolioModel = Portfolio.Api.Models.Portfolio;
 
 namespace Portfolio.Api.Data;
 
@@ -18,7 +19,7 @@ public partial class PortfolioDbContext : DbContext
 
     public virtual DbSet<HeroSection> HeroSections { get; set; }
 
-    public virtual DbSet<PortfolioEntity> Portfolios { get; set; }
+    public virtual DbSet<PortfolioModel> Portfolios { get; set; }
 
     public virtual DbSet<Profile> Profiles { get; set; }
 
@@ -52,11 +53,9 @@ public partial class PortfolioDbContext : DbContext
                 .HasConstraintName("FK_HeroSections_Portfolios");
         });
 
-        modelBuilder.Entity<PortfolioEntity>(entity =>
+        modelBuilder.Entity<PortfolioModel>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Portfoli__3214EC07B380C584");
-
-            entity.HasIndex(e => e.Slug, "UQ__Portfoli__BC7B5FB68762A80F").IsUnique();
 
             entity.Property(e => e.CreatedAt).HasDefaultValueSql("(sysutcdatetime())");
             entity.Property(e => e.CvurlEn)
@@ -67,7 +66,6 @@ public partial class PortfolioDbContext : DbContext
                 .HasColumnName("CVUrlEs");
             entity.Property(e => e.DisplayName).HasMaxLength(100);
             entity.Property(e => e.LogoUrl).HasMaxLength(500);
-            entity.Property(e => e.Slug).HasMaxLength(100);
         });
 
         modelBuilder.Entity<Profile>(entity =>
@@ -94,7 +92,7 @@ public partial class PortfolioDbContext : DbContext
             entity.Property(e => e.LiveUrl).HasMaxLength(500);
             entity.Property(e => e.Preview).HasMaxLength(500);
             entity.Property(e => e.ShowInPortfolio).HasDefaultValue(true);
-            entity.Property(e => e.Status).HasDefaultValue(1);
+            entity.Property(e => e.Status).HasDefaultValue(ProjectStatus.InProgress);
             entity.Property(e => e.Title).HasMaxLength(150);
 
             entity.HasOne(d => d.Portfolio).WithMany(p => p.Projects)

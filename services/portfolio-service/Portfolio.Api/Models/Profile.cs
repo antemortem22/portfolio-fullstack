@@ -21,7 +21,7 @@ public partial class Profile
 
     public DateTime? UpdatedAt { get; set; }
 
-    public virtual PortfolioEntity Portfolio { get; set; } = null!;
+    public virtual Portfolio Portfolio { get; set; } = null!;
 
     public virtual ICollection<SocialLink> SocialLinks { get; set; } = new List<SocialLink>();
 }

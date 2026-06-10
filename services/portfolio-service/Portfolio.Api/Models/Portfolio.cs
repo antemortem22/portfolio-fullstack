@@ -3,13 +3,11 @@ using System.Collections.Generic;
 
 namespace Portfolio.Api.Models;
 
-public partial class PortfolioEntity
+public partial class Portfolio
 {
     public int Id { get; set; }
 
     public Guid? OwnerUserId { get; set; }
-
-    public string Slug { get; set; } = null!;
 
     public string? LogoUrl { get; set; }
 

@@ -17,5 +17,5 @@ public partial class Tool
 
     public bool IsActive { get; set; }
 
-    public virtual PortfolioEntity Portfolio { get; set; } = null!;
+    public virtual Portfolio Portfolio { get; set; } = null!;
 }
