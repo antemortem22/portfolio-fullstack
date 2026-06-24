@@ -11,15 +11,23 @@ public sealed class PortfolioController(IPortfolioService portfolioService) : Co
     [HttpGet]
     [ProducesResponseType(typeof(PortfolioDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status499ClientClosedRequest)]
     public async Task<ActionResult<PortfolioDto>> GetPortfolio(CancellationToken cancellationToken)
     {
-        var portfolio = await portfolioService.GetPublicPortfolioAsync(cancellationToken);
-
-        if (portfolio is null)
+        try
         {
-            return NotFound();
-        }
+            var portfolio = await portfolioService.GetPublicPortfolioAsync(cancellationToken);
 
-        return Ok(portfolio);
+            if (portfolio is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(portfolio);
+        }
+        catch (OperationCanceledException) when (HttpContext.RequestAborted.IsCancellationRequested)
+        {
+            return StatusCode(StatusCodes.Status499ClientClosedRequest);
+        }
     }
 }

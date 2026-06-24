@@ -1,6 +1,8 @@
 using Scalar.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Portfolio.Api.Data;
+using Portfolio.Api.Repository;
+using Portfolio.Api.Repository.Interfaces;
 using Portfolio.Api.Service;
 using Portfolio.Api.Service.Interfaces;
 
@@ -12,6 +14,8 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<PortfolioDbContext>(
     options => options.UseSqlServer(
         builder.Configuration.GetConnectionString("PortfolioDb")));
+builder.Services.AddScoped<IProjectsRepository, ProjectsRepository>();
+builder.Services.AddScoped<IPortfolioRepository, PortfolioRepository>();
 builder.Services.AddScoped<IProjectsService, ProjectsService>();
 builder.Services.AddScoped<IPortfolioService, PortfolioService>();
 builder.Services.AddOpenApi();
