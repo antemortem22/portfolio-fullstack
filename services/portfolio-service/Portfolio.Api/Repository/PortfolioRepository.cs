@@ -10,15 +10,15 @@ public sealed class PortfolioRepository(PortfolioDbContext dbContext) : IPortfol
 {
     public async Task<PortfolioDto?> GetPublicPortfolioAsync(CancellationToken cancellationToken = default)
     {
-        var portfolio = await dbContext.Portfolios
+        return await dbContext.Portfolios
             .AsNoTracking()
             .AsSplitQuery()
             .OrderBy(item => item.Id)
-            .Select(item => new
+            .Select(item => new PortfolioDto
             {
-                item.Id,
-                item.DisplayName,
-                item.LogoUrl,
+                Id = item.Id,
+                DisplayName = item.DisplayName,
+                LogoUrl = item.LogoUrl,
                 CvUrlEs = item.CvurlEs,
                 CvUrlEn = item.CvurlEn,
                 HeroSection = item.HeroSections
@@ -33,12 +33,12 @@ public sealed class PortfolioRepository(PortfolioDbContext dbContext) : IPortfol
                     .FirstOrDefault(),
                 Profile = item.Profiles
                     .OrderBy(profile => profile.Id)
-                    .Select(profile => new
+                    .Select(profile => new ProfileDto
                     {
-                        profile.AboutEs,
-                        profile.AboutEn,
-                        profile.Role,
-                        profile.ProfileImageUrl,
+                        AboutEs = profile.AboutEs,
+                        AboutEn = profile.AboutEn,
+                        Role = profile.Role,
+                        ProfileImageUrl = profile.ProfileImageUrl,
                         SocialLinks = profile.SocialLinks
                             .Where(link => link.IsActive)
                             .OrderBy(link => link.DisplayOrder)
@@ -56,19 +56,28 @@ public sealed class PortfolioRepository(PortfolioDbContext dbContext) : IPortfol
                     .Where(project => project.ShowInPortfolio && project.Status != ProjectStatus.Archived)
                     .OrderBy(project => project.DisplayOrder)
                     .ThenBy(project => project.Id)
-                    .Select(project => new
+                    .Select(project => new ProjectDto
                     {
-                        project.Id,
-                        project.Title,
-                        project.Eyebrow,
-                        project.DescriptionEs,
-                        project.DescriptionEn,
-                        project.GithubUrl,
-                        project.LiveUrl,
-                        project.Preview,
-                        project.ShowInPortfolio,
-                        project.DisplayOrder,
-                        project.Status,
+                        Id = project.Id,
+                        Title = project.Title,
+                        Eyebrow = project.Eyebrow,
+                        DescriptionEs = project.DescriptionEs,
+                        DescriptionEn = project.DescriptionEn,
+                        GithubUrl = project.GithubUrl,
+                        LiveUrl = project.LiveUrl,
+                        Preview = project.Preview,
+                        ShowInPortfolio = project.ShowInPortfolio,
+                        DisplayOrder = project.DisplayOrder,
+                        Status = project.Status == ProjectStatus.InProgress
+                            ? nameof(ProjectStatus.InProgress)
+                            : project.Status == ProjectStatus.Completed
+                                ? nameof(ProjectStatus.Completed)
+                                : nameof(ProjectStatus.Archived),
+                        StatusLabel = project.Status == ProjectStatus.InProgress
+                            ? "In progress"
+                            : project.Status == ProjectStatus.Completed
+                                ? "Completed"
+                                : "Archived",
                         Tags = project.ProjectTags
                             .OrderBy(tag => tag.Name)
                             .Select(tag => tag.Name)
@@ -107,50 +116,5 @@ public sealed class PortfolioRepository(PortfolioDbContext dbContext) : IPortfol
                     .ToArray()
             })
             .FirstOrDefaultAsync(cancellationToken);
-
-        if (portfolio is null)
-        {
-            return null;
-        }
-
-        return new PortfolioDto
-        {
-            Id = portfolio.Id,
-            DisplayName = portfolio.DisplayName,
-            LogoUrl = portfolio.LogoUrl,
-            CvUrlEs = portfolio.CvUrlEs,
-            CvUrlEn = portfolio.CvUrlEn,
-            HeroSection = portfolio.HeroSection,
-            Profile = portfolio.Profile is null
-                ? null
-                : new ProfileDto
-                {
-                    AboutEs = portfolio.Profile.AboutEs,
-                    AboutEn = portfolio.Profile.AboutEn,
-                    Role = portfolio.Profile.Role,
-                    ProfileImageUrl = portfolio.Profile.ProfileImageUrl,
-                    SocialLinks = portfolio.Profile.SocialLinks
-                },
-            Projects = portfolio.Projects
-                .Select(project => new ProjectDto
-                {
-                    Id = project.Id,
-                    Title = project.Title,
-                    Eyebrow = project.Eyebrow,
-                    DescriptionEs = project.DescriptionEs,
-                    DescriptionEn = project.DescriptionEn,
-                    GithubUrl = project.GithubUrl,
-                    LiveUrl = project.LiveUrl,
-                    Preview = project.Preview,
-                    ShowInPortfolio = project.ShowInPortfolio,
-                    DisplayOrder = project.DisplayOrder,
-                    Status = project.Status.ToString(),
-                    StatusLabel = project.Status.GetDisplayName(),
-                    Tags = project.Tags
-                })
-                .ToArray(),
-            SkillCategories = portfolio.SkillCategories,
-            Tools = portfolio.Tools
-        };
     }
 }
