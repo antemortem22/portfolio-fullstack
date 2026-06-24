@@ -46,8 +46,7 @@ export type ProfileData = {
 };
 
 export type Project = {
-  id: string;
-  slug: string;
+  id: number;
   published: boolean;
   order: number;
   title: string;

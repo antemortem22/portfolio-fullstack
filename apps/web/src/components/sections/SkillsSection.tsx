@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { skillGroups, skillsCopy, technologies } from "@/data/skills";
+import { skillsCopy } from "@/data/skills";
 import { useLanguage } from "@/context/LanguageContext";
 
 type SkillIconName =
@@ -13,6 +13,26 @@ type SkillIconName =
   | "postman"
   | "workflow"
   | "test-tube";
+
+type SkillGroup = {
+  title: string;
+  icon: string;
+  skills: {
+    name: string;
+    value: number;
+  }[];
+};
+
+type Technology = {
+  label: string;
+  icon: string;
+};
+
+type SkillsSectionProps = {
+  state: "loading" | "ready" | "empty" | "error";
+  skillGroups: SkillGroup[];
+  technologies: Technology[];
+};
 
 function SkillIcon({ icon, compact = false }: { icon: string; compact?: boolean }) {
   const iconName = icon as SkillIconName;
@@ -89,8 +109,63 @@ function SkillIcon({ icon, compact = false }: { icon: string; compact?: boolean 
   );
 }
 
-export function SkillsSection() {
+export function SkillsSection({ state, skillGroups, technologies }: SkillsSectionProps) {
   const { locale } = useLanguage();
+
+  if (state === "loading") {
+    return (
+      <section id="skills" className="section-shell">
+        <div className="section-heading">
+          <p>{skillsCopy.eyebrow[locale]}</p>
+          <h2>{skillsCopy.title[locale]}</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-sm font-normal normal-case leading-7 tracking-normal text-zinc-400">
+            {skillsCopy.description[locale]}
+          </p>
+        </div>
+        <div className="mx-auto mt-8 w-full max-w-[860px] border border-white/10 bg-black/20 p-6 text-sm text-zinc-400 sm:mt-10">
+          {locale === "es" ? "Cargando skills..." : "Loading skills..."}
+        </div>
+      </section>
+    );
+  }
+
+  if (state === "error") {
+    return (
+      <section id="skills" className="section-shell">
+        <div className="section-heading">
+          <p>{skillsCopy.eyebrow[locale]}</p>
+          <h2>{skillsCopy.title[locale]}</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-sm font-normal normal-case leading-7 tracking-normal text-zinc-400">
+            {skillsCopy.description[locale]}
+          </p>
+        </div>
+        <div className="mx-auto mt-8 w-full max-w-[860px] border border-white/10 bg-black/20 p-6 text-sm text-zinc-400 sm:mt-10">
+          {locale === "es"
+            ? "No fue posible cargar las skills en este momento."
+            : "Skills could not be loaded at this time."}
+        </div>
+      </section>
+    );
+  }
+
+  if (state === "empty") {
+    return (
+      <section id="skills" className="section-shell">
+        <div className="section-heading">
+          <p>{skillsCopy.eyebrow[locale]}</p>
+          <h2>{skillsCopy.title[locale]}</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-sm font-normal normal-case leading-7 tracking-normal text-zinc-400">
+            {skillsCopy.description[locale]}
+          </p>
+        </div>
+        <div className="mx-auto mt-8 w-full max-w-[860px] border border-white/10 bg-black/20 p-6 text-sm text-zinc-400 sm:mt-10">
+          {locale === "es"
+            ? "Todavia no hay skills disponibles."
+            : "There are no skills available yet."}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="skills" className="section-shell">

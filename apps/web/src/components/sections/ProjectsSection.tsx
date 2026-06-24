@@ -3,11 +3,63 @@
 import Image from "next/image";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { useLanguage } from "@/context/LanguageContext";
-import { projects, projectsCopy } from "@/data/projects";
+import { projectsCopy } from "@/data/projects";
+import type { Project } from "@/types/content";
 
-export function ProjectsSection() {
+type ProjectsSectionProps = {
+  projects: Project[];
+  state: "loading" | "ready" | "empty" | "error";
+};
+
+export function ProjectsSection({ projects, state }: ProjectsSectionProps) {
   const { locale } = useLanguage();
   const hasThreeOrMoreProjects = projects.length >= 3;
+
+  if (state === "loading") {
+    return (
+      <section id="projects" className="section-shell">
+        <div className="section-heading">
+          <p>{projectsCopy.eyebrow[locale]}</p>
+          <h2>{projectsCopy.title[locale]}</h2>
+        </div>
+        <div className="mx-auto mt-7 w-full max-w-[860px] border border-white/10 bg-black/20 p-6 text-sm text-zinc-400 sm:mt-12">
+          {locale === "es" ? "Cargando proyectos..." : "Loading projects..."}
+        </div>
+      </section>
+    );
+  }
+
+  if (state === "error") {
+    return (
+      <section id="projects" className="section-shell">
+        <div className="section-heading">
+          <p>{projectsCopy.eyebrow[locale]}</p>
+          <h2>{projectsCopy.title[locale]}</h2>
+        </div>
+        <div className="mx-auto mt-7 w-full max-w-[860px] border border-white/10 bg-black/20 p-6 text-sm text-zinc-400 sm:mt-12">
+          {locale === "es"
+            ? "No fue posible cargar los proyectos en este momento."
+            : "Projects could not be loaded at this time."}
+        </div>
+      </section>
+    );
+  }
+
+  if (state === "empty") {
+    return (
+      <section id="projects" className="section-shell">
+        <div className="section-heading">
+          <p>{projectsCopy.eyebrow[locale]}</p>
+          <h2>{projectsCopy.title[locale]}</h2>
+        </div>
+        <div className="mx-auto mt-7 w-full max-w-[860px] border border-white/10 bg-black/20 p-6 text-sm text-zinc-400 sm:mt-12">
+          {locale === "es"
+            ? "Todavia no hay proyectos disponibles."
+            : "There are no projects available yet."}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="projects" className="section-shell">
@@ -55,12 +107,14 @@ export function ProjectsSection() {
                 ))}
               </div>
               <div className="mt-4 flex flex-col items-start gap-1.5 sm:mt-5">
-                <ExternalLink
-                  href={project.repositoryUrl}
-                  className="inline-flex text-sm font-semibold text-primary-light transition hover:text-white"
-                >
-                  {projectsCopy.repositoryLabel[locale]} <span className="ml-2">-&gt;</span>
-                </ExternalLink>
+                {project.repositoryUrl ? (
+                  <ExternalLink
+                    href={project.repositoryUrl}
+                    className="inline-flex text-sm font-semibold text-primary-light transition hover:text-white"
+                  >
+                    {projectsCopy.repositoryLabel[locale]} <span className="ml-2">-&gt;</span>
+                  </ExternalLink>
+                ) : null}
                 {project.projectUrl ? (
                   <ExternalLink
                     href={project.projectUrl}
