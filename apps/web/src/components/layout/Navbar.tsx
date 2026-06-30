@@ -9,6 +9,7 @@ import { brand } from "@/data/brand";
 export function Navbar() {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("#hero");
   const { locale, setLocale } = useLanguage();
   const isHeaderActive = hasScrolled || isMenuOpen;
   const cvHref = brand.cvUrl[locale];
@@ -31,6 +32,89 @@ export function Navbar() {
       document.body.style.overflow = "";
     };
   }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      return;
+    }
+
+    let touchStartY: number | null = null;
+
+    const handleScrollClose = () => {
+      setIsMenuOpen(false);
+    };
+
+    const handleTouchStart = (event: TouchEvent) => {
+      touchStartY = event.touches[0]?.clientY ?? null;
+    };
+
+    const handleTouchMove = (event: TouchEvent) => {
+      const currentY = event.touches[0]?.clientY;
+
+      if (touchStartY === null || currentY === undefined) {
+        return;
+      }
+
+      if (Math.abs(currentY - touchStartY) > 10) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("wheel", handleScrollClose, { passive: true });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("scroll", handleScrollClose, { passive: true });
+
+    return () => {
+      window.removeEventListener("wheel", handleScrollClose);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("scroll", handleScrollClose);
+    };
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    const sectionIds = brand.navItems.map((item) => item.href).filter((href) => href.startsWith("#"));
+    const sections = sectionIds
+      .map((href) => document.querySelector<HTMLElement>(href))
+      .filter((section): section is HTMLElement => section !== null);
+
+    if (!sections.length) {
+      return;
+    }
+
+    const syncFromHash = () => {
+      const currentHash = window.location.hash;
+      if (sectionIds.includes(currentHash)) {
+        setActiveSection(currentHash);
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((left, right) => right.intersectionRatio - left.intersectionRatio);
+
+        if (visibleEntries[0]?.target.id) {
+          setActiveSection(`#${visibleEntries[0].target.id}`);
+        }
+      },
+      {
+        rootMargin: "-20% 0px -55% 0px",
+        threshold: [0.2, 0.35, 0.5, 0.7],
+      },
+    );
+
+    syncFromHash();
+    window.addEventListener("hashchange", syncFromHash);
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      window.removeEventListener("hashchange", syncFromHash);
+      observer.disconnect();
+    };
+  }, []);
 
   const closeMenu = () => setIsMenuOpen(false);
   const mobileLocaleLabel = locale === "es" ? "Idioma" : "Language";
@@ -61,15 +145,23 @@ export function Navbar() {
             className="h-6 w-6 object-contain drop-shadow-[0_6px_10px_rgba(0,0,0,0.75)]"
             loading="eager"
           />
-          <span className="font-title text-lg font-semibold leading-none tracking-wide text-white">
-            {brand.name}
+          <span className="type-heading-display text-lg uppercase leading-none tracking-wide text-white">
+            AGOS
           </span>
         </a>
 
         <div className="flex items-center gap-3 sm:gap-7">
           <div className="hidden items-center gap-7 text-[12px] font-normal text-zinc-300 md:flex">
             {brand.navItems.map((item) => (
-              <a key={item.href} href={item.href} className="transition hover:text-white">
+              <a
+                key={item.href}
+                href={item.href}
+                className={`border-b pb-1 transition ${
+                  activeSection === item.href
+                    ? "border-primary-light text-white"
+                    : "border-transparent hover:border-primary-light/70 hover:text-white"
+                }`}
+              >
                 {item.label[locale]}
               </a>
             ))}
@@ -88,7 +180,9 @@ export function Navbar() {
             aria-controls="mobile-menu"
             aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           >
-            <span className="sr-only">{isMenuOpen ? "Close navigation menu" : "Open navigation menu"}</span>
+            <span className="sr-only">
+              {isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            </span>
             <span className="relative h-4 w-5">
               <span
                 className={`absolute left-0 top-0 h-px w-5 bg-current transition duration-300 ${
@@ -175,7 +269,11 @@ export function Navbar() {
                 key={item.href}
                 href={item.href}
                 onClick={closeMenu}
-                className="border-b border-white/7 py-4 text-[15px] text-zinc-200 transition hover:text-white"
+                className={`border-b py-4 text-[15px] transition ${
+                  activeSection === item.href
+                    ? "border-primary-light/60 text-white"
+                    : "border-white/7 text-zinc-200 hover:text-white"
+                }`}
               >
                 <span>{item.label[locale]}</span>
               </a>
@@ -184,7 +282,7 @@ export function Navbar() {
           <ExternalLink
             href={cvHref}
             onClick={closeMenu}
-            className="inline-flex items-center border-b border-primary-light/40 py-4 text-[15px] font-medium text-primary-light transition hover:text-white"
+            className="mt-1 inline-flex items-center justify-center rounded-md border border-primary-light/45 bg-[rgba(122,56,181,0.14)] px-4 py-3 text-[15px] font-medium text-primary-light shadow-[0_0_22px_rgba(122,56,181,0.12)] transition hover:border-primary-light/70 hover:bg-[rgba(122,56,181,0.2)] hover:text-white"
           >
             <span>{brand.cvLabel[locale]}</span>
           </ExternalLink>

@@ -1,10 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { ExternalLink } from "@/components/ui/ExternalLink";
+import { MotionReveal } from "@/components/motion/MotionReveal";
+import { MotionStagger } from "@/components/motion/MotionStagger";
+import { Button } from "@/components/shared/Button";
+import { Divider } from "@/components/shared/Divider";
+import { FloralBackground } from "@/components/shared/FloralBackground";
+import { Section } from "@/components/shared/Section";
+import { SectionHeading } from "@/components/shared/SectionHeading";
 import { useLanguage } from "@/context/LanguageContext";
 import { profile } from "@/data/profile";
-import type { Locale, ProfileLink, ProfileLinkIcon } from "@/types/content";
+import type { Locale, ProfileLink } from "@/types/content";
 
 function resolveProfileLinkHref(link: ProfileLink, locale: Locale) {
   return typeof link.href === "string" ? link.href : link.href[locale];
@@ -14,97 +20,126 @@ function shouldOpenInNewTab(href: string) {
   return href.startsWith("http://") || href.startsWith("https://") || href.endsWith(".pdf");
 }
 
-function AboutLinkIcon({ icon }: { icon: ProfileLinkIcon }) {
+function SocialIcon({ icon }: { icon: ProfileLink["icon"] }) {
   if (icon === "github") {
     return (
-      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
-        <path d="M12 2C6.48 2 2 6.59 2 12.25c0 4.52 2.87 8.35 6.84 9.71.5.09.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.51.47-3.16-.63-3.36-1.2-.11-.29-.6-1.2-1.03-1.44-.35-.2-.85-.69-.01-.7.79-.01 1.35.74 1.54 1.04.9 1.55 2.34 1.11 2.91.85.09-.67.35-1.11.64-1.37-2.22-.26-4.55-1.14-4.55-5.05 0-1.11.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.95c.85 0 1.71.12 2.51.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.92-2.34 4.79-4.57 5.05.36.32.68.94.68 1.91 0 1.38-.01 2.49-.01 2.83 0 .27.18.59.69.49A10.18 10.18 0 0 0 22 12.25C22 6.59 17.52 2 12 2Z" />
+      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current">
+        <path d="M12 2C6.48 2 2 6.58 2 12.24c0 4.53 2.87 8.38 6.84 9.73.5.1.68-.22.68-.5 0-.24-.01-1.05-.01-1.9-2.78.62-3.36-1.22-3.36-1.22-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .08 1.53 1.06 1.53 1.06.9 1.57 2.35 1.12 2.92.86.09-.67.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.08 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.84c.85 0 1.7.12 2.5.37 1.9-1.33 2.74-1.05 2.74-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.95-2.35 4.81-4.58 5.06.36.32.69.95.69 1.92 0 1.38-.01 2.5-.01 2.84 0 .28.18.61.69.5A10.27 10.27 0 0 0 22 12.24C22 6.58 17.52 2 12 2Z" />
       </svg>
     );
   }
 
   if (icon === "linkedin") {
     return (
-      <span
-        aria-hidden="true"
-        className="inline-flex h-4 w-4 items-center justify-center rounded-[1px] bg-current"
-      >
-        <span className="font-sans text-[10px] font-black leading-none text-[#0B0B0F]">in</span>
-      </span>
+      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current">
+        <path d="M6.94 8.5H3.56V20h3.38V8.5Zm.22-3.55C7.14 3.9 6.37 3 5.26 3S3.38 3.9 3.38 4.95c0 1.03.75 1.94 1.84 1.94h.02c1.12 0 1.92-.9 1.92-1.94ZM20.62 13.14c0-3.46-1.8-5.07-4.22-5.07-1.94 0-2.81 1.1-3.29 1.87V8.5H9.74c.04.95 0 11.5 0 11.5h3.37v-6.42c0-.34.02-.67.12-.91.27-.68.87-1.38 1.88-1.38 1.33 0 1.87 1.04 1.87 2.58V20H20.62v-6.86Z" />
+      </svg>
     );
   }
 
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
-      <path d="M13 4h-2v8.17L7.41 8.59 6 10l6 6 6-6-1.41-1.41L13 12.17V4Zm-7 14v2h12v-2H6Z" />
-    </svg>
-  );
-}
-
-function ProfileLinkButton({ link, locale }: { link: ProfileLink; locale: Locale }) {
-  const href = resolveProfileLinkHref(link, locale);
-
-  return (
-    <ExternalLink
-      href={href}
-      newTab={shouldOpenInNewTab(href)}
-      className={
-        link.variant === "primary"
-          ? "inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-md bg-primary px-3 text-sm font-semibold text-white shadow-[0_0_28px_rgba(85,56,131,0.45)] transition hover:bg-primary-light"
-          : "inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-md border border-primary-light bg-[#0B0B0F] px-3 text-sm font-semibold text-primary-light transition hover:text-white hover:shadow-[0_0_16px_rgba(124,81,192,0.32)]"
-      }
-    >
-      <AboutLinkIcon icon={link.icon} />
-      {link.label[locale]}
-    </ExternalLink>
-  );
+  return null;
 }
 
 export function AboutSection() {
   const { locale } = useLanguage();
+  const primaryLink = profile.links.find((link) => link.variant === "primary");
+  const secondaryLinks = profile.links.filter((link) => link.variant !== "primary");
 
   return (
-    <section id="about" className="section-shell">
-      <div className="section-heading">
-        <p>{profile.eyebrow[locale]}</p>
-        <h2>{profile.title[locale]}</h2>
-      </div>
+    <Section
+      id="about"
+      wide
+      tone="surface"
+      className="relative isolate overflow-hidden border-b border-white/8 py-20 sm:py-24"
+    >
+      <FloralBackground intensity="medium" />
+      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,rgba(122,56,181,0.16)_0%,rgba(122,56,181,0.06)_18%,rgba(122,56,181,0.02)_28%,transparent_48%)]" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(8,7,10,0.3)_0%,rgba(8,7,10,0.76)_100%)]" />
 
-      <div className="mt-7 grid items-center gap-7 sm:mt-10 sm:gap-8 md:grid-cols-[1.08fr_0.92fr] lg:gap-10">
-        <div className="relative pb-6 pr-3 sm:pb-8 sm:pr-5">
-          <div className="relative overflow-hidden rounded-[12px] border-2 border-primary-light shadow-[0_0_30px_rgba(124,81,192,0.48),0_0_76px_rgba(85,56,131,0.3)]">
-            <Image
-              src={profile.image}
-              alt={profile.imageAlt[locale]}
-              width={980}
-              height={720}
-              className="h-[320px] w-full object-cover object-[center_12%] sm:h-[420px] sm:object-[center_14%] lg:h-[390px] lg:object-[center_18%]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/12" />
-          </div>
+      <div className="grid gap-10">
+        <div className="grid gap-8">
+          <MotionReveal>
+            <div className="max-w-4xl">
+              <SectionHeading
+                eyebrow={profile.eyebrow[locale]}
+                title={profile.title[locale]}
+                accent={profile.subtitle[locale]}
+              />
+              <div className="mt-8 flex max-w-[520px] flex-col gap-6">
+                <div className="flex items-center gap-5 px-1 py-1">
+                  <div className="relative shrink-0 rounded-full p-[4px] ring-1 ring-[rgba(220,184,255,0.14)]">
+                    <div className="relative h-[114px] w-[114px] overflow-hidden rounded-full border-[3px] border-[rgba(195,145,255,0.78)] shadow-[0_0_0_1px_rgba(99,55,146,0.22),0_0_26px_rgba(140,89,206,0.12)] sm:h-[128px] sm:w-[128px]">
+                      <Image
+                        src={profile.image}
+                        alt={profile.imageAlt[locale]}
+                        fill
+                        sizes="128px"
+                        className="object-cover object-[center_18%]"
+                      />
+                    </div>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-sans text-[0.98rem] leading-7 text-white whitespace-nowrap sm:text-[1.08rem]">
+                      <span className="font-sans font-medium text-white">{profile.role[locale]}</span>
+                      {" - "}
+                      <span className="font-sans text-[var(--color-copy)]">{profile.sideNote[locale]}</span>
+                    </p>
+                    <p className="type-meta mt-3 text-[0.7rem]">
+                      {profile.location[locale]}
+                    </p>
+                  </div>
+                </div>
 
-          <div className="absolute bottom-0 right-0 rounded-[12px] border-2 border-primary-light bg-[#0B0B0F] px-5 py-3.5 text-center shadow-[0_0_24px_rgba(124,81,192,0.42)]">
-            <p className="font-subtitle text-xl italic leading-[0.95] text-primary-light sm:text-2xl">
-              Full Stack
-              <br />
-              Developer
-            </p>
-          </div>
+                <div className="flex flex-wrap gap-3">
+                  {primaryLink ? (
+                    <Button
+                      href={resolveProfileLinkHref(primaryLink, locale)}
+                      target={shouldOpenInNewTab(resolveProfileLinkHref(primaryLink, locale)) ? "_blank" : undefined}
+                      rel={shouldOpenInNewTab(resolveProfileLinkHref(primaryLink, locale)) ? "noreferrer" : undefined}
+                    >
+                      {primaryLink.label[locale]}
+                    </Button>
+                  ) : null}
+
+                  {secondaryLinks.map((link) => (
+                    <Button
+                      key={link.icon}
+                      href={resolveProfileLinkHref(link, locale)}
+                      variant="secondary"
+                      target={shouldOpenInNewTab(resolveProfileLinkHref(link, locale)) ? "_blank" : undefined}
+                      rel={shouldOpenInNewTab(resolveProfileLinkHref(link, locale)) ? "noreferrer" : undefined}
+                      className="gap-2 border-white/12 bg-transparent"
+                    >
+                      <SocialIcon icon={link.icon} />
+                      <span>{link.label[locale]}</span>
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </MotionReveal>
         </div>
 
-        <div>
-          <div className="space-y-3 text-sm leading-6 text-zinc-400 sm:space-y-4 sm:leading-7">
-            {profile.paragraphs[locale].map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-          <div className="mt-5 grid gap-3 sm:mt-6 sm:grid-cols-3">
-            {profile.links.map((link) => (
-              <ProfileLinkButton key={link.icon} link={link} locale={locale} />
-            ))}
-          </div>
-        </div>
+        <MotionReveal>
+          <Divider />
+        </MotionReveal>
+
+        <MotionStagger className="grid gap-8 md:grid-cols-3">
+          {profile.pillars.map((pillar) => (
+            <MotionReveal
+              key={pillar.title[locale]}
+              className="border-t border-white/8 pt-5 md:border-t-0 md:pt-0"
+            >
+              <h3 className="type-heading-sans text-[0.78rem] tracking-[0.22em] text-white">
+                {pillar.title[locale]}
+              </h3>
+              <p className="type-body-muted mt-4">
+                {pillar.body[locale]}
+              </p>
+            </MotionReveal>
+          ))}
+        </MotionStagger>
       </div>
-    </section>
+    </Section>
   );
 }

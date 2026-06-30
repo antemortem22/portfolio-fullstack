@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter, Playfair_Display } from "next/font/google";
+import { CursorGlowTrail } from "@/components/effects/CursorGlowTrail";
 import "./globals.css";
 
 const inter = Inter({
@@ -36,7 +37,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${inter.variable} ${playfair.variable} ${cormorant.variable}`}>
-      <body>{children}</body>
+      <body className="relative min-h-screen overflow-x-hidden">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-0 z-0 bg-[url('/portfolio-background.png')] bg-repeat opacity-[0.11]"
+          style={{ backgroundPosition: "center top", backgroundSize: "760px" }}
+        />
+        <CursorGlowTrail />
+        <div className="relative z-10">{children}</div>
+      </body>
     </html>
   );
 }

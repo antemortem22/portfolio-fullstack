@@ -133,6 +133,7 @@ function mapProjectDtoToProject(project: ProjectDto): Project {
     repositoryUrl: project.githubUrl ?? "",
     projectUrl: project.liveUrl ?? undefined,
     image: project.preview ?? undefined,
+    statusLabel: project.statusLabel || undefined,
   };
 }
 

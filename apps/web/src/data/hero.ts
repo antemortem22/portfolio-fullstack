@@ -1,29 +1,43 @@
-export const hero = {
-  title: "AGOS",
-  image: "/hero-photo-v2.jpg",
-  imageAlt: {
-    es: "Retrato principal de Agos para la portada del portfolio",
-    en: "Main portrait of Agos for the portfolio hero section",
+import type { HeroData } from "@/types/content";
+
+export const hero: HeroData = {
+  intro: {
+    es: "¡Hola Mundo! Soy ~",
+    en: "Hello Wordl! I'm ~",
   },
-  tagline: {
-    es: "Code as ritual, logic as art — turning code into meaning.",
-    en: "Code as ritual, logic as art — turning code into meaning.",
+  firstName: "AGOSTINA",
+  lastName: "DI NAPOLI",
+  role: {
+    es: "FULL STACK DEVELOPER",
+    en: "FULL STACK DEVELOPER",
+  },
+  editorialEyebrow: {
+    es: "Code as ritual, logic as art - turning code into meaning.",
+    en: "Code as ritual, logic as art - turning code into meaning.",
   },
   description: {
-    es: "Desarrollo productos digitales con foco en el detalle, el rendimiento y una arquitectura clara para construir experiencias modernas y funcionales.",
-    en: "I build digital products with a focus on detail, performance and clean architecture, creating modern experiences with real functionality.",
+    es: "Desarrollo productos digitales escalables, APIs robustas e interfaces cuidadas. Mi foco esta en el ecosistema .NET, sin perder de vista la experiencia completa del producto.",
+    en: "I build scalable digital products, robust APIs and polished interfaces. My focus is the .NET ecosystem without losing sight of the complete product experience.",
+  },
+  metadata: {
+    es: "BACKEND .NET - REACT / NEXT.JS - BUENOS AIRES",
+    en: "BACKEND .NET - REACT / NEXT.JS - BUENOS AIRES",
+  },
+  ticker: {
+    es: "OPEN TO WORK - FULL STACK DEVELOPER - BACKEND .NET - C# - REACT - NEXT.JS - BUENOS AIRES - REMOTE -",
+    en: "OPEN TO WORK - FULL STACK DEVELOPER - BACKEND .NET - C# - REACT - NEXT.JS - BUENOS AIRES - REMOTE -",
   },
   primaryAction: {
     label: {
-      es: "Ver proyectos",
-      en: "View projects",
+      es: "Ver mis proyectos",
+      en: "View my projects",
     },
     href: "#projects",
   },
   secondaryAction: {
     label: {
-      es: "Contactame",
-      en: "Contact me",
+      es: "Hablemos",
+      en: "Let's talk",
     },
     href: "#contact",
   },

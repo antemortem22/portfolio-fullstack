@@ -1,18 +1,11 @@
 "use client";
 
-import Image from "next/image";
-import { skillsCopy } from "@/data/skills";
+import { MotionReveal } from "@/components/motion/MotionReveal";
+import { MotionStagger } from "@/components/motion/MotionStagger";
+import { Section } from "@/components/shared/Section";
+import { SectionHeading } from "@/components/shared/SectionHeading";
 import { useLanguage } from "@/context/LanguageContext";
-
-type SkillIconName =
-  | "code"
-  | "server"
-  | "database"
-  | "git"
-  | "azure-devops"
-  | "postman"
-  | "workflow"
-  | "test-tube";
+import { mockSkillsCategories, skillsCopy } from "@/data/skills";
 
 type SkillGroup = {
   title: string;
@@ -34,188 +27,132 @@ type SkillsSectionProps = {
   technologies: Technology[];
 };
 
-function SkillIcon({ icon, compact = false }: { icon: string; compact?: boolean }) {
-  const iconName = icon as SkillIconName;
-  const iconClass = compact ? "h-7 w-7" : "h-7 w-7";
-
-  const content = (
-    <>
-      {iconName === "code" && (
-        <span className="font-mono text-xl font-bold tracking-[0.08em] leading-none">
-          &lt;/&gt;
-        </span>
-      )}
-
-      {iconName === "server" && (
-        <svg viewBox="0 0 24 24" className={iconClass} fill="currentColor">
-          <path d="M4 4h16a2 2 0 0 1 2 2v4H2V6a2 2 0 0 1 2-2Zm0 10h16a2 2 0 0 1 2 2v4H2v-4a2 2 0 0 1 2-2Zm3-7v1.8h8V7H7Zm11-.2a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4ZM7 17v1.8h8V17H7Zm11-.2a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4Z" />
-        </svg>
-      )}
-
-      {iconName === "database" && (
-        <svg viewBox="0 0 24 24" className={iconClass} fill="currentColor">
-          <path d="M12 3C7.03 3 3 4.57 3 6.5S7.03 10 12 10s9-1.57 9-3.5S16.97 3 12 3Z" />
-          <path d="M3 9.2v4.1C3 15.23 7.03 16.8 12 16.8s9-1.57 9-3.5V9.2c-1.6 1.61-5.08 2.55-9 2.55s-7.4-.94-9-2.55Z" />
-          <path d="M3 16v1.5C3 19.43 7.03 21 12 21s9-1.57 9-3.5V16c-1.6 1.61-5.08 2.55-9 2.55S4.6 17.61 3 16Z" />
-        </svg>
-      )}
-
-      {iconName === "git" && (
-        <svg viewBox="0 0 24 24" className={iconClass} fill="currentColor">
-          <path d="M22.1 10.95 13.05 1.9a1.48 1.48 0 0 0-2.1 0L8.9 3.95l2.38 2.38a1.95 1.95 0 0 1 2.47 2.48l2.29 2.29a1.96 1.96 0 1 1-1.18 1.18L12.72 10.1v5.68a1.95 1.95 0 1 1-1.64-.02V10a1.96 1.96 0 0 1-.86-2.6L7.75 4.93 1.9 10.78a1.48 1.48 0 0 0 0 2.1l9.22 9.22c.58.58 1.52.58 2.1 0l8.88-8.88c.58-.58.58-1.52 0-2.1Z" />
-        </svg>
-      )}
-
-      {iconName === "azure-devops" && (
-        <svg viewBox="0 0 24 24" className={iconClass} fill="currentColor">
-          <path d="M4 4.8 11.2 2v4.3L7.7 7.7v8.6l3.5 1.4V22L4 19.2V4.8Zm8.6 1.2L20 3.1v17.8l-7.4-2.9v-3.5l4.2 1.4V8.1l-4.2 1.4V6Zm-3.3 4.1 3.3-1.1v6l-3.3-1.1v-3.8Z" />
-        </svg>
-      )}
-
-      {iconName === "postman" && (
-        <svg viewBox="0 0 24 24" className={iconClass} fill="currentColor">
-          <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm5.25 7.14-4.86 4.86-.7-.7 2.5-2.5-3.95 2.22-.85 3.57-1.1-1.1 3.57-.85 2.22-3.95-2.5 2.5-.7-.7 4.86-4.86a1.07 1.07 0 0 1 1.51 1.51Zm-1.2-.8a.28.28 0 0 0-.4 0l-1.1 1.1.4.4 1.1-1.1a.28.28 0 0 0 0-.4Z" />
-        </svg>
-      )}
-
-      {iconName === "workflow" && (
-        <svg viewBox="0 0 24 24" className={iconClass} fill="currentColor">
-          <path d="M4.5 3h5.2A2.5 2.5 0 0 1 12.2 5.5v2.2h2.7A2.6 2.6 0 0 1 17.5 5h2A2.5 2.5 0 0 1 22 7.5v2A2.5 2.5 0 0 1 19.5 12h-2a2.6 2.6 0 0 1-2.45-1.75H12.2v4.5h1.55a2.6 2.6 0 0 1 2.45-1.75h2A2.5 2.5 0 0 1 20.7 15.5v2A2.5 2.5 0 0 1 18.2 20h-2a2.5 2.5 0 0 1-2.5-2.5v-.25H10a2.3 2.3 0 0 1-2.3-2.3V12H4.5A2.5 2.5 0 0 1 2 9.5v-4A2.5 2.5 0 0 1 4.5 3Z" />
-        </svg>
-      )}
-
-      {iconName === "test-tube" && (
-        <Image
-          src="/testing-icon.svg"
-          alt=""
-          width={28}
-          height={28}
-          className={iconClass}
-        />
-      )}
-    </>
-  );
-
-  if (compact) {
-    return <span className="inline-flex items-center justify-center text-primary-light">{content}</span>;
-  }
-
-  return (
-    <span
-      className="inline-flex h-11 w-11 items-center justify-center rounded-[10px] border border-primary-light/30 bg-[linear-gradient(180deg,rgba(124,81,192,0.3)_0%,rgba(85,56,131,0.7)_100%)] text-primary-light shadow-[0_0_20px_rgba(124,81,192,0.22),inset_0_1px_0_rgba(255,255,255,0.12)]"
-    >
-      {content}
-    </span>
-  );
+function normalize(value: string) {
+  return value.toLowerCase();
 }
 
-export function SkillsSection({ state, skillGroups, technologies }: SkillsSectionProps) {
+function buildCategories(skillGroups: SkillGroup[], technologies: Technology[]) {
+  if (skillGroups.length === 0 && technologies.length === 0) {
+    return null;
+  }
+
+  const categoryMap = new Map<string, Set<string>>([
+    ["Backend", new Set<string>()],
+    ["Frontend & Web", new Set<string>()],
+    ["Bases de datos", new Set<string>()],
+    ["Arquitectura", new Set<string>()],
+    ["Tools & DevOps", new Set<string>()],
+    ["Idiomas", new Set<string>()],
+  ]);
+
+  const matchCategory = (value: string) => {
+    const normalized = normalize(value);
+
+    if (["c#", ".net", "asp.net", "node", "spring", "api", "backend"].some((token) => normalized.includes(token))) {
+      return "Backend";
+    }
+
+    if (["react", "angular", "next", "tailwind", "lit", "frontend", "web"].some((token) => normalized.includes(token))) {
+      return "Frontend & Web";
+    }
+
+    if (["sql", "postgres", "mongo", "entity framework", "database"].some((token) => normalized.includes(token))) {
+      return "Bases de datos";
+    }
+
+    if (["clean", "solid", "microservice", "pattern", "architecture"].some((token) => normalized.includes(token))) {
+      return "Arquitectura";
+    }
+
+    if (["git", "docker", "azure", "ci", "turbo", "devops"].some((token) => normalized.includes(token))) {
+      return "Tools & DevOps";
+    }
+
+    return "Idiomas";
+  };
+
+  skillGroups.forEach((group) => {
+    const category = matchCategory(group.title);
+    const target = categoryMap.get(category);
+
+    if (!target) {
+      return;
+    }
+
+    group.skills.forEach((skill) => target.add(skill.name));
+  });
+
+  technologies.forEach((technology) => {
+    const category = matchCategory(technology.label);
+    categoryMap.get(category)?.add(technology.label);
+  });
+
+  return Array.from(categoryMap.entries())
+    .map(([title, items], index) => ({
+      id: title,
+      index: String(index + 1).padStart(2, "0"),
+      title: {
+        es: title,
+        en: title === "Bases de datos" ? "Databases" : title === "Arquitectura" ? "Architecture" : title === "Idiomas" ? "Languages" : title,
+      },
+      items: Array.from(items),
+    }))
+    .filter((category) => category.items.length > 0);
+}
+
+export function SkillsSection({ skillGroups, technologies }: SkillsSectionProps) {
   const { locale } = useLanguage();
-
-  if (state === "loading") {
-    return (
-      <section id="skills" className="section-shell">
-        <div className="section-heading">
-          <p>{skillsCopy.eyebrow[locale]}</p>
-          <h2>{skillsCopy.title[locale]}</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm font-normal normal-case leading-7 tracking-normal text-zinc-400">
-            {skillsCopy.description[locale]}
-          </p>
-        </div>
-        <div className="mx-auto mt-8 w-full max-w-[860px] border border-white/10 bg-black/20 p-6 text-sm text-zinc-400 sm:mt-10">
-          {locale === "es" ? "Cargando skills..." : "Loading skills..."}
-        </div>
-      </section>
-    );
-  }
-
-  if (state === "error") {
-    return (
-      <section id="skills" className="section-shell">
-        <div className="section-heading">
-          <p>{skillsCopy.eyebrow[locale]}</p>
-          <h2>{skillsCopy.title[locale]}</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm font-normal normal-case leading-7 tracking-normal text-zinc-400">
-            {skillsCopy.description[locale]}
-          </p>
-        </div>
-        <div className="mx-auto mt-8 w-full max-w-[860px] border border-white/10 bg-black/20 p-6 text-sm text-zinc-400 sm:mt-10">
-          {locale === "es"
-            ? "No fue posible cargar las skills en este momento."
-            : "Skills could not be loaded at this time."}
-        </div>
-      </section>
-    );
-  }
-
-  if (state === "empty") {
-    return (
-      <section id="skills" className="section-shell">
-        <div className="section-heading">
-          <p>{skillsCopy.eyebrow[locale]}</p>
-          <h2>{skillsCopy.title[locale]}</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm font-normal normal-case leading-7 tracking-normal text-zinc-400">
-            {skillsCopy.description[locale]}
-          </p>
-        </div>
-        <div className="mx-auto mt-8 w-full max-w-[860px] border border-white/10 bg-black/20 p-6 text-sm text-zinc-400 sm:mt-10">
-          {locale === "es"
-            ? "Todavia no hay skills disponibles."
-            : "There are no skills available yet."}
-        </div>
-      </section>
-    );
-  }
+  const categories = buildCategories(skillGroups, technologies) ?? mockSkillsCategories;
 
   return (
-    <section id="skills" className="section-shell">
-      <div className="section-heading">
-        <p>{skillsCopy.eyebrow[locale]}</p>
-        <h2>{skillsCopy.title[locale]}</h2>
-        <p className="mx-auto mt-4 max-w-2xl text-sm font-normal normal-case leading-7 tracking-normal text-zinc-400">
-          {skillsCopy.description[locale]}
-        </p>
-      </div>
+    <Section
+      id="skills"
+      wide
+      className="relative isolate overflow-hidden border-b border-white/8 py-20 sm:py-24"
+      tone="default"
+    >
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-[#0f0e14]" />
+      <div className="grid gap-10">
+        <MotionReveal>
+          <SectionHeading
+            eyebrow={skillsCopy.eyebrow[locale]}
+            title={skillsCopy.title[locale]}
+            accent={skillsCopy.accent[locale]}
+          />
+        </MotionReveal>
 
-      <div className="mt-8 grid gap-5 sm:mt-10 sm:gap-7 md:grid-cols-3 lg:gap-9">
-        {skillGroups.map((group) => (
-          <article key={group.title} className="goth-card p-5">
-            <div className="flex items-center gap-4">
-              <SkillIcon icon={group.icon} />
-              <h3 className="text-xl text-zinc-100">{group.title}</h3>
-            </div>
-
-            <div className="mt-5 space-y-4">
-              {group.skills.map((skill) => (
-                <div key={skill.name}>
-                  <div className="mb-2 flex items-center justify-between text-sm">
-                    <span className="text-zinc-100">{skill.name}</span>
-                    <span className="font-semibold text-primary-light">{skill.value}%</span>
-                  </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-slate-700/70">
-                    <div
-                      className="h-full rounded-full bg-primary-light"
-                      style={{ width: `${skill.value}%` }}
-                    />
-                  </div>
+        <MotionStagger className="grid gap-x-8 gap-y-8 pt-2 md:grid-cols-2 xl:grid-cols-3">
+          {categories.map((category) => (
+            <MotionReveal
+              key={category.id}
+              className="group relative grid content-start gap-5 overflow-hidden px-5 py-5 transition duration-500 hover:-translate-y-1 sm:px-6"
+            >
+              <div className="grid gap-4">
+                <p className="relative z-10 type-meta text-[0.64rem] text-[var(--color-accent)] transition duration-500 group-hover:text-[var(--color-accent-soft)]">
+                  {category.index} {category.title[locale]}
+                </p>
+                <div className="relative h-px w-full overflow-hidden bg-[rgba(122,56,181,0.22)]">
+                  <div
+                    aria-hidden="true"
+                    className="skills-shimmer absolute inset-y-[-8px] left-[-24%] w-[28%] bg-[linear-gradient(90deg,transparent_0%,rgba(122,56,181,0.05)_18%,rgba(181,138,221,0.3)_50%,rgba(122,56,181,0.08)_82%,transparent_100%)] opacity-70 blur-md"
+                  />
                 </div>
-              ))}
-            </div>
-          </article>
-        ))}
-      </div>
+              </div>
 
-      <div className="mt-6 flex flex-wrap justify-center gap-4 sm:mt-7 sm:gap-6">
-        {technologies.map((tech) => (
-          <div
-            key={tech.label}
-            className="flex min-h-16 w-full max-w-[170px] flex-[1_1_130px] flex-col items-center justify-center gap-1.5 rounded-[12px] border border-primary-light/16 bg-[linear-gradient(180deg,rgba(19,19,24,0.94)_0%,rgba(11,11,16,0.96)_100%)] px-4 py-3 text-center text-sm font-medium text-zinc-100 shadow-[0_0_24px_rgba(124,81,192,0.1),0_0_52px_rgba(85,56,131,0.1),inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:border-primary-light/40 hover:shadow-[0_0_28px_rgba(124,81,192,0.18),0_0_64px_rgba(85,56,131,0.16),inset_0_1px_0_rgba(255,255,255,0.08)]"
-          >
-            <SkillIcon icon={tech.icon} compact />
-            <span>{tech.label}</span>
-          </div>
-        ))}
+              <div className="relative z-10 flex flex-wrap gap-3">
+                {category.items.map((item) => (
+                  <span
+                    key={item}
+                    className="inline-flex min-h-9 items-center border border-white/8 bg-[rgba(12,11,16,0.82)] px-3 py-2 font-sans text-[0.64rem] font-semibold uppercase tracking-[0.08em] text-white transition duration-500 group-hover:border-[rgba(255,255,255,0.14)] group-hover:bg-[rgba(22,21,27,0.92)] hover:-translate-y-1 hover:border-[rgba(181,138,221,0.48)] hover:bg-[rgba(32,22,45,0.98)] hover:text-[var(--color-accent-soft)] hover:shadow-[0_12px_24px_rgba(69,28,101,0.2)]"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </MotionReveal>
+          ))}
+        </MotionStagger>
       </div>
-    </section>
+    </Section>
   );
 }

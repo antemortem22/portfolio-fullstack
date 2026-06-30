@@ -36,13 +36,49 @@ export type BrandData = {
   socialLinks: SocialLink[];
 };
 
+export type HeroData = {
+  intro: LocalizedText;
+  firstName: string;
+  lastName: string;
+  role: LocalizedText;
+  editorialEyebrow: LocalizedText;
+  description: LocalizedText;
+  metadata: LocalizedText;
+  ticker: LocalizedText;
+  primaryAction: {
+    label: LocalizedText;
+    href: string;
+  };
+  secondaryAction: {
+    label: LocalizedText;
+    href: LocalizedLink;
+  };
+};
+
+export type AboutPillar = {
+  title: LocalizedText;
+  body: LocalizedText;
+};
+
 export type ProfileData = {
   eyebrow: LocalizedText;
   title: LocalizedText;
+  subtitle: LocalizedText;
   image: string;
   imageAlt: LocalizedText;
-  paragraphs: Record<Locale, string[]>;
+  role: LocalizedText;
+  location: LocalizedText;
+  sideNote: LocalizedText;
+  pillars: AboutPillar[];
   links: ProfileLink[];
+};
+
+export type ExperienceItem = {
+  period: LocalizedText;
+  role: LocalizedText;
+  company: string;
+  summary: LocalizedText;
+  tags: string[];
 };
 
 export type Project = {
@@ -57,4 +93,5 @@ export type Project = {
   projectUrl?: string;
   image?: string;
   imageAlt?: LocalizedText;
+  statusLabel?: string;
 };
