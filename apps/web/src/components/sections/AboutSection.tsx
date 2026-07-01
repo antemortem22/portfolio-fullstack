@@ -50,25 +50,25 @@ export function AboutSection() {
       id="about"
       wide
       tone="surface"
-      className="relative isolate overflow-hidden border-b border-white/8 py-20 sm:py-24"
+      className="relative isolate overflow-hidden border-b border-white/8 py-16 sm:py-20"
     >
       <FloralBackground intensity="medium" />
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,rgba(122,56,181,0.16)_0%,rgba(122,56,181,0.06)_18%,rgba(122,56,181,0.02)_28%,transparent_48%)]" />
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(8,7,10,0.3)_0%,rgba(8,7,10,0.76)_100%)]" />
 
-      <div className="grid gap-10">
-        <div className="grid gap-8">
+      <div className="grid gap-8">
+        <div className="grid gap-6">
           <MotionReveal>
-            <div className="max-w-4xl">
+            <div className="max-w-6xl">
               <SectionHeading
                 eyebrow={profile.eyebrow[locale]}
                 title={profile.title[locale]}
                 accent={profile.subtitle[locale]}
               />
-              <div className="mt-8 flex max-w-[520px] flex-col gap-6">
-                <div className="flex items-center gap-5 px-1 py-1">
+              <div className="mt-8 flex max-w-[840px] flex-col gap-6">
+                <div className="flex flex-col items-start gap-4 px-1 py-1 sm:flex-row sm:items-center sm:gap-4">
                   <div className="relative shrink-0 rounded-full p-[4px] ring-1 ring-[rgba(220,184,255,0.14)]">
-                    <div className="relative h-[114px] w-[114px] overflow-hidden rounded-full border-[3px] border-[rgba(195,145,255,0.78)] shadow-[0_0_0_1px_rgba(99,55,146,0.22),0_0_26px_rgba(140,89,206,0.12)] sm:h-[128px] sm:w-[128px]">
+                    <div className="relative h-[108px] w-[108px] overflow-hidden rounded-full border-[3px] border-[rgba(195,145,255,0.78)] shadow-[0_0_0_1px_rgba(99,55,146,0.22),0_0_26px_rgba(140,89,206,0.12)] sm:h-[120px] sm:w-[120px]">
                       <Image
                         src={profile.image}
                         alt={profile.imageAlt[locale]}
@@ -79,7 +79,7 @@ export function AboutSection() {
                     </div>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="font-sans text-[0.98rem] leading-7 text-white whitespace-nowrap sm:text-[1.08rem]">
+                    <p className="font-sans text-[0.88rem] leading-7 text-white sm:text-[0.93rem] lg:whitespace-nowrap">
                       <span className="font-sans font-medium text-white">{profile.role[locale]}</span>
                       {" - "}
                       <span className="font-sans text-[var(--color-copy)]">{profile.sideNote[locale]}</span>
@@ -90,12 +90,13 @@ export function AboutSection() {
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                   {primaryLink ? (
                     <Button
                       href={resolveProfileLinkHref(primaryLink, locale)}
                       target={shouldOpenInNewTab(resolveProfileLinkHref(primaryLink, locale)) ? "_blank" : undefined}
                       rel={shouldOpenInNewTab(resolveProfileLinkHref(primaryLink, locale)) ? "noreferrer" : undefined}
+                      className="w-full sm:w-auto"
                     >
                       {primaryLink.label[locale]}
                     </Button>
@@ -108,7 +109,7 @@ export function AboutSection() {
                       variant="secondary"
                       target={shouldOpenInNewTab(resolveProfileLinkHref(link, locale)) ? "_blank" : undefined}
                       rel={shouldOpenInNewTab(resolveProfileLinkHref(link, locale)) ? "noreferrer" : undefined}
-                      className="gap-2 border-white/12 bg-transparent"
+                      className="w-full gap-2 border-white/12 bg-transparent sm:w-auto"
                     >
                       <SocialIcon icon={link.icon} />
                       <span>{link.label[locale]}</span>
@@ -124,16 +125,16 @@ export function AboutSection() {
           <Divider />
         </MotionReveal>
 
-        <MotionStagger className="grid gap-8 md:grid-cols-3">
+        <MotionStagger className="grid gap-6 md:grid-cols-3 md:gap-7">
           {profile.pillars.map((pillar) => (
             <MotionReveal
               key={pillar.title[locale]}
-              className="border-t border-white/8 pt-5 md:border-t-0 md:pt-0"
+              className="border-t border-white/8 pt-4 md:border-t-0 md:pt-0"
             >
-              <h3 className="type-heading-sans text-[0.78rem] tracking-[0.22em] text-white">
+              <h3 className="type-heading-sans text-[0.68rem] tracking-[0.18em] text-white sm:text-[0.72rem]">
                 {pillar.title[locale]}
               </h3>
-              <p className="type-body-muted mt-4">
+              <p className="type-body-muted mt-3 max-w-[25rem] text-[0.82rem] leading-[1.72] sm:text-[0.86rem] sm:leading-[1.78]">
                 {pillar.body[locale]}
               </p>
             </MotionReveal>

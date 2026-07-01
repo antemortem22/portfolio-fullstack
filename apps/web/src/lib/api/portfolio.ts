@@ -1,5 +1,7 @@
 import { apiFetch } from "@/lib/api/client";
-import type { Project } from "@/types/content";
+import type { Project, SkillCategoryId, SkillGroup, Technology } from "@/types/content";
+
+export const PORTFOLIO_REVALIDATE_SECONDS = 3600;
 
 export type PortfolioDto = {
   id: number;
@@ -54,6 +56,7 @@ export type ProjectDto = {
 type SkillCategoryDto = {
   name: string;
   displayOrder: number;
+  categoryKey?: string | null;
   skills: SkillDto[];
 };
 
@@ -67,21 +70,12 @@ type ToolDto = {
   name: string;
   icon: string | null;
   displayOrder: number;
+  categoryKey?: string | null;
 };
 
 export type SkillsSectionData = {
-  skillGroups: {
-    title: string;
-    icon: string;
-    skills: {
-      name: string;
-      value: number;
-    }[];
-  }[];
-  technologies: {
-    label: string;
-    icon: string;
-  }[];
+  skillGroups: SkillGroup[];
+  technologies: Technology[];
 };
 
 export type PortfolioSectionsData = {
@@ -92,7 +86,11 @@ export type PortfolioSectionsData = {
 
 export async function getPortfolio() {
   return apiFetch<PortfolioDto>("/api/portfolio", {
-    cache: "no-store",
+    cache: "force-cache",
+    next: {
+      revalidate: PORTFOLIO_REVALIDATE_SECONDS,
+      tags: ["portfolio"],
+    },
   });
 }
 
@@ -115,6 +113,28 @@ function mapSkillGroupIcon(categoryName: string) {
       return "database";
     default:
       return "code";
+  }
+}
+
+function mapCategoryId(value?: string | null): SkillCategoryId | undefined {
+  if (!value) {
+    return undefined;
+  }
+
+  const normalized = value.trim().toLowerCase();
+
+  switch (normalized) {
+    case "backend":
+    case "frontend":
+    case "databases":
+    case "architecture":
+    case "tools":
+    case "methodologies":
+    case "security":
+    case "languages":
+      return normalized;
+    default:
+      return undefined;
   }
 }
 
@@ -145,6 +165,7 @@ function mapPortfolioToSkillsSectionData(portfolio: PortfolioDto): SkillsSection
       .map((category) => ({
         title: category.name,
         icon: mapSkillGroupIcon(category.name),
+        categoryId: mapCategoryId(category.categoryKey),
         skills: category.skills
           .slice()
           .sort((left, right) => left.displayOrder - right.displayOrder)
@@ -159,6 +180,7 @@ function mapPortfolioToSkillsSectionData(portfolio: PortfolioDto): SkillsSection
       .map((tool) => ({
         label: tool.name,
         icon: tool.icon ?? "workflow",
+        categoryId: mapCategoryId(tool.categoryKey),
       })),
   };
 }

@@ -1,4 +1,13 @@
 export type Locale = "es" | "en";
+export type SkillCategoryId =
+  | "backend"
+  | "frontend"
+  | "databases"
+  | "architecture"
+  | "tools"
+  | "methodologies"
+  | "security"
+  | "languages";
 
 export type LocalizedText = Record<Locale, string>;
 export type LocalizedAsset = Record<Locale, string>;
@@ -43,7 +52,6 @@ export type HeroData = {
   role: LocalizedText;
   editorialEyebrow: LocalizedText;
   description: LocalizedText;
-  metadata: LocalizedText;
   ticker: LocalizedText;
   primaryAction: {
     label: LocalizedText;
@@ -74,11 +82,27 @@ export type ProfileData = {
 };
 
 export type ExperienceItem = {
-  period: LocalizedText;
+  timelineLabel: LocalizedText;
   role: LocalizedText;
-  company: string;
+  aclarations: LocalizedText;
   summary: LocalizedText;
   tags: string[];
+};
+
+export type SkillGroup = {
+  title: string;
+  icon: string;
+  categoryId?: SkillCategoryId;
+  skills: {
+    name: string;
+    value: number;
+  }[];
+};
+
+export type Technology = {
+  label: string;
+  icon: string;
+  categoryId?: SkillCategoryId;
 };
 
 export type Project = {

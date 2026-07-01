@@ -9,11 +9,12 @@ import { SkillsSection } from "@/components/sections/SkillsSection";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { hardcodedProjects } from "@/data/projects";
 import {
+  PORTFOLIO_REVALIDATE_SECONDS,
   getPortfolioSectionsData,
   type PortfolioSectionsData,
 } from "@/lib/api/portfolio";
 
-export const dynamic = "force-dynamic";
+export const revalidate = PORTFOLIO_REVALIDATE_SECONDS;
 
 export default async function Home() {
   let data: PortfolioSectionsData = {
@@ -21,8 +22,7 @@ export default async function Home() {
     skillGroups: [],
     technologies: [],
   };
-  const projectsState: "ready" | "empty" | "error" = "ready";
-  const skillsState: "ready" | "empty" | "error" = "ready";
+  let projectsState: "ready" | "empty" | "error" = "empty";
 
   try {
     data = await getPortfolioSectionsData();
@@ -30,10 +30,11 @@ export default async function Home() {
     if (data.projects.length === 0) {
       data.projects = hardcodedProjects;
     }
-
+    projectsState = data.projects.length > 0 ? "ready" : "empty";
   } catch (error) {
     console.error("Failed to load portfolio sections.", error);
     data.projects = hardcodedProjects;
+    projectsState = data.projects.length > 0 ? "ready" : "error";
   }
 
   return (
@@ -45,7 +46,6 @@ export default async function Home() {
         <ProjectsSection state={projectsState} projects={data.projects} />
         <ExperienceSection />
         <SkillsSection
-          state={skillsState}
           skillGroups={data.skillGroups}
           technologies={data.technologies}
         />

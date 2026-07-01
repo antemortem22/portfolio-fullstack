@@ -10,10 +10,10 @@ export const brand: BrandData = {
   },
   navItems: [
     { label: { es: "Inicio", en: "Home" }, href: "#hero" },
-    { label: { es: "Sobre mi", en: "About" }, href: "#about" },
+    { label: { es: "Sobre mí", en: "About" }, href: "#about" },
     { label: { es: "Proyectos", en: "Projects" }, href: "#projects" },
     { label: { es: "Experiencia", en: "Experience" }, href: "#experience" },
-    { label: { es: "Tecnologias", en: "Technologies" }, href: "#skills" },
+    { label: { es: "Tecnologías", en: "Technologies" }, href: "#skills" },
     { label: { es: "Contacto", en: "Contact" }, href: "#contact" },
   ],
   cvLabel: {

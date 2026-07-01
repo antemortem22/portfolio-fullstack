@@ -1,4 +1,9 @@
-type RequestOptions = RequestInit;
+type RequestOptions = RequestInit & {
+  next?: {
+    revalidate?: number | false;
+    tags?: string[];
+  };
+};
 
 export class ApiError extends Error {
   readonly status: number;

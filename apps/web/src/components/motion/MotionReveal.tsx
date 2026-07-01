@@ -11,7 +11,7 @@ type MotionRevealProps = HTMLMotionProps<"div"> & {
 export function MotionReveal({
   children,
   delay = 0,
-  distance = 28,
+  distance = 42,
   transition,
   ...props
 }: MotionRevealProps) {
@@ -19,13 +19,21 @@ export function MotionReveal({
 
   return (
     <motion.div
-      initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: distance }}
-      whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+      initial={
+        reduceMotion
+          ? { opacity: 0 }
+          : { opacity: 0, y: distance, scale: 0.985, filter: "blur(8px)" }
+      }
+      whileInView={
+        reduceMotion
+          ? { opacity: 1 }
+          : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }
+      }
       viewport={{ once: true, amount: 0.2 }}
       transition={{
-        duration: reduceMotion ? 0.2 : 0.64,
+        duration: reduceMotion ? 0.2 : 0.82,
         delay,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.16, 1, 0.3, 1],
         ...transition,
       }}
       {...props}

@@ -5,14 +5,22 @@ export const contact = {
   },
   title: {
     es: "Trabajemos juntos.",
-    en: "Let’s work together.",
+    en: "Let's work together.",
   },
   description: {
     es: "Si llegaste hasta acá, probablemente tengamos algo de qué hablar. Estoy abierta a nuevas oportunidades, a aprender de otras personas, intercambiar ideas y asumir nuevos desafíos.",
-    en: "If you’ve made it this far, we probably have something worth talking about. I’m open to new opportunities, learning from others, exchanging ideas, and taking on new challenges.",
+    en: "If you've made it this far, we probably have something worth talking about. I'm open to new opportunities, learning from others, exchanging ideas, and taking on new challenges.",
+  },
+  upcoming: {
+    es: "Próximamente, estará habilitado el servicio de mensajería.",
+    en: "Messaging will be available soon.",
+  },
+  interimContact: {
+    es: "Mientras lo desarrollo, podés contactarme en:",
+    en: "While I build it, you can reach me at:",
   },
   locationLabel: {
-    es: "Ubicacion",
+    es: "Ubicación",
     en: "Location",
   },
   location: {
@@ -39,48 +47,5 @@ export const contact = {
   availability: {
     es: "Open to work - full stack, backend .NET y proyectos remotos.",
     en: "Open to work - full stack, .NET backend and remote projects.",
-  },
-  fields: {
-    name: {
-      label: { es: "Nombre", en: "Name" },
-      placeholder: { es: "Agostina", en: "Agostina" },
-    },
-    email: {
-      label: { es: "Email", en: "Email" },
-      placeholder: { es: "hola@email.com", en: "hello@email.com" },
-    },
-    subject: {
-      label: { es: "Asunto", en: "Subject" },
-      placeholder: { es: "Consulta sobre una oportunidad", en: "A message about an opportunity" },
-    },
-    message: {
-      label: { es: "Mensaje", en: "Message" },
-      placeholder: {
-        es: "Contame brevemente el contexto, el rol o el proyecto.",
-        en: "Tell me briefly about the context, the role or the project.",
-      },
-    },
-  },
-  buttonLabel: {
-    es: "Enviar mensaje",
-    en: "Send message",
-  },
-  success: {
-    es: "Mensaje enviado. Gracias por escribirme.",
-    en: "Message sent. Thanks for reaching out.",
-  },
-  error: {
-    es: "No fue posible enviar el mensaje. Intentalo nuevamente.",
-    en: "The message could not be sent. Please try again.",
-  },
-  validation: {
-    required: {
-      es: "Completa todos los campos obligatorios.",
-      en: "Please complete all required fields.",
-    },
-    email: {
-      es: "Ingresa un email valido.",
-      en: "Please enter a valid email address.",
-    },
   },
 };

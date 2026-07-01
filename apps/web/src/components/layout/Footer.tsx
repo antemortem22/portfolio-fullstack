@@ -27,13 +27,13 @@ export function Footer() {
     <footer className="relative isolate overflow-hidden bg-[rgba(8,7,10,0.62)] backdrop-blur-[6px]">
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(8,7,10,0.38)_0%,rgba(8,7,10,0.72)_100%)]" />
 
-      <div className="w-full px-6 sm:px-10 lg:px-14">
+      <div className="w-full px-4 sm:px-8 lg:px-14">
         <MotionReveal className="flex min-h-[72px] flex-col gap-4 py-5 text-[0.9rem] text-[var(--color-copy)] sm:min-h-[76px] sm:flex-row sm:items-center sm:justify-between sm:gap-6">
-          <p className="text-sm leading-none text-[var(--color-copy)]">
+          <p className="text-sm leading-snug text-[var(--color-copy)]">
             &copy; 2026 AGOS. {brand.footerRights[locale]}
           </p>
 
-          <div className="flex items-center gap-3 sm:gap-4">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <a
               href="#hero"
               className="inline-flex items-center px-1 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--color-copy)] transition hover:text-[var(--color-foreground)]"

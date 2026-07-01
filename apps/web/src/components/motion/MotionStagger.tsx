@@ -10,8 +10,8 @@ type MotionStaggerProps = HTMLMotionProps<"div"> & {
 
 export function MotionStagger({
   children,
-  stagger = 0.08,
-  delay = 0,
+  stagger = 0.12,
+  delay = 0.04,
   ...props
 }: MotionStaggerProps) {
   const reduceMotion = useReducedMotion();
