@@ -1,23 +1,32 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter, Playfair_Display } from "next/font/google";
+import localFont from "next/font/local";
 import { CursorGlowTrail } from "@/components/effects/CursorGlowTrail";
 import "./globals.css";
 
-const inter = Inter({
+const inter = localFont({
+  src: "../../fonts/Inter-VariableFont_opsz,wght.ttf",
   variable: "--font-inter",
-  subsets: ["latin"],
 });
 
-const playfair = Playfair_Display({
+const playfair = localFont({
+  src: "../../fonts/PlayfairDisplay-VariableFont_wght.ttf",
   variable: "--font-playfair",
-  subsets: ["latin"],
 });
 
-const cormorant = Cormorant_Garamond({
+const cormorant = localFont({
+  src: [
+    {
+      path: "../../fonts/CormorantGaramond-VariableFont_wght.ttf",
+      style: "normal",
+      weight: "400 700",
+    },
+    {
+      path: "../../fonts/CormorantGaramond-Italic-VariableFont_wght.ttf",
+      style: "italic",
+      weight: "400 700",
+    },
+  ],
   variable: "--font-cormorant",
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {

@@ -9,12 +9,11 @@ import { SkillsSection } from "@/components/sections/SkillsSection";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { hardcodedProjects } from "@/data/projects";
 import {
-  PORTFOLIO_REVALIDATE_SECONDS,
   getPortfolioSectionsData,
   type PortfolioSectionsData,
 } from "@/lib/api/portfolio";
 
-export const revalidate = PORTFOLIO_REVALIDATE_SECONDS;
+export const revalidate = 3600;
 
 export default async function Home() {
   let data: PortfolioSectionsData = {
