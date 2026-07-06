@@ -48,6 +48,7 @@ export function HeroSection() {
       return;
     }
 
+    // One timeout keeps the type/delete loop easy to reason about and avoids overlapping timers.
     const currentText = heroTickerItems[typedIndex] ?? "";
     const isComplete = typedText === currentText;
     const isEmpty = typedText.length === 0;
@@ -216,6 +217,7 @@ export function HeroSection() {
             ) : (
               <div className="hero-ticker-viewport">
                 <div className="hero-ticker-track">
+                  {/* Repeating the group keeps the marquee continuous without having to reset the animation. */}
                   <TickerGroup />
                   <TickerGroup duplicateKey="copy-a" ariaHidden />
                   <TickerGroup duplicateKey="copy-b" ariaHidden />

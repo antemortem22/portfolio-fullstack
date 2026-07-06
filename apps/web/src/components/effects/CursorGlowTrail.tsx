@@ -31,6 +31,7 @@ function usePrecisePointerEnabled() {
     () => true,
   );
 
+  // The effect is only worth rendering for fine pointers while the tab is visible.
   return !prefersReducedMotion && canUsePrecisePointer && isPageVisible;
 }
 
@@ -59,6 +60,7 @@ export function CursorGlowTrail() {
       return;
     }
 
+    // Dim the glow over interactive surfaces that already have their own visual emphasis.
     const handlePointerMove = (event: PointerEvent) => {
       pointerX.set(event.clientX);
       pointerY.set(event.clientY);

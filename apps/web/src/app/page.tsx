@@ -26,12 +26,14 @@ export default async function Home() {
   try {
     data = await getPortfolioSectionsData();
 
+    // If the API returns no public projects yet, keep the section populated with the curated local fallback.
     if (data.projects.length === 0) {
       data.projects = hardcodedProjects;
     }
     projectsState = data.projects.length > 0 ? "ready" : "empty";
   } catch (error) {
     console.error("Failed to load portfolio sections.", error);
+    // The page should stay usable even if the portfolio API is temporarily unavailable.
     data.projects = hardcodedProjects;
     projectsState = data.projects.length > 0 ? "ready" : "error";
   }

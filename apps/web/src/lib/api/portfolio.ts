@@ -121,6 +121,7 @@ function mapCategoryId(value?: string | null): SkillCategoryId | undefined {
     return undefined;
   }
 
+  // Normalize API values before matching them to the narrower UI category union.
   const normalized = value.trim().toLowerCase();
 
   switch (normalized) {
@@ -161,6 +162,7 @@ function mapPortfolioToSkillsSectionData(portfolio: PortfolioDto): SkillsSection
   return {
     skillGroups: portfolio.skillCategories
       .slice()
+      // Sort copies to preserve the original payload in case the same data is reused elsewhere.
       .sort((left, right) => left.displayOrder - right.displayOrder)
       .map((category) => ({
         title: category.name,
