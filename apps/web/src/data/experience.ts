@@ -33,6 +33,38 @@ export const experienceItems: ExperienceItem[] = [
   },
   {
     timelineLabel: {
+      es: "ago 2026 - dic 2028",
+      en: "aug 2026 - dec 2028",
+    },
+
+    role: {
+      es: "Tecnicatura Superior en Desarrollo de Software",
+      en: "Higher Technical Degree in Software Development",
+    },
+
+    aclarations: {
+      es: "IFTS N.º 29 | Modalidad a distancia | En curso",
+      en: "IFTS No. 29 | Remote program | In progress",
+    },
+
+    summary: {
+      es: "Formación integral en desarrollo de software, con contenidos en programación, bases de datos, orientación a objetos, modelado y diseño de software, desarrollo web backend y frontend, testing, ingeniería de software, cloud, redes y gestión de proyectos.",
+      en: "Comprehensive software development program covering programming, databases, object-oriented development, software modeling and design, backend and frontend web development, testing, software engineering, cloud technologies, networking and project management.",
+    },
+
+    tags: [
+      "Software Development",
+      "Backend",
+      "Frontend",
+      "Databases",
+      "OOP",
+      "Software Design",
+      "Testing",
+      "Cloud",
+    ],
+  },
+  {
+    timelineLabel: {
       es: "2020 - PRESENTE",
       en: "2020 - PRESENT",
     },
@@ -49,24 +81,5 @@ export const experienceItems: ExperienceItem[] = [
       en: "Ongoing development of technical foundations in web development, backend, databases and software architecture, complemented by courses from different institutions and applied practice through personal projects.",
     },
     tags: ["HTML", "css", "JAVASCRIPT", "Python", "Ruby","unit testing", ".Net ecosystem"],
-  },
-  {
-    timelineLabel: {
-      es: "feb 2023 - dic 2024",
-      en: "feb 2023 - dec 2024",
-    },
-    role: {
-      es: "Tecnicatura en Desarrollo de Software",
-      en: "Software Development Technical Degree",
-    },
-    aclarations: {
-      es: "Trayecto académico avanzado - 16/20 materias aprobadas (descontinuado)",
-      en: "Advanced academic path - 16/20 courses completed (discontinued)",
-    },
-    summary: {
-      es: "Formación orientada al desarrollo web, lógica de programación, pensamiento computacional, programación orientada a objetos, bases de datos y fundamentos de software. Trayecto continuado luego mediante aprendizaje independiente, cursos técnicos y proyectos prácticos.",
-      en: "Training focused on software development, programming logic, computational thinking, object-oriented programming, databases and software fundamentals. Later continued through independent learning, technical courses and practical projects.",
-    },
-    tags: ["programming logic", "DataBase", "Software", "Web","python", "poo"],
   },
 ];
