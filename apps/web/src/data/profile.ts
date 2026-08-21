@@ -23,42 +23,42 @@ export const profile: ProfileData = {
     en: "Full Stack Developer",
   },
   location: {
-    es: "Buenos Aires, Argentina",
-    en: "Buenos Aires, Argentina",
+    es: "Buenos Aires, Argentina | REMOTE",
+    en: "Buenos Aires, Argentina | REMOTE",
   },
   sideNote: {
-    es: "Especializada en Backend, APIs escalables y experiencias web cuidadosamente diseñadas.",
-    en: "Specialized in Backend, scalable APIs and carefully crafted web experiences.",
+    es: "Construyo soluciones desde la lógica de negocio hasta la interfaz.",
+    en: "I build solutions from business logic to the user interface.",
   },
   pillars: [
     {
       title: {
-        es: "EXPERIENCIA EN SISTEMAS REALES",
-        en: "REAL-WORLD SYSTEMS",
+        es: "EXPERIENCIA EN PRODUCTO REAL",
+        en: "CODE THAT REACHES PRODUCTION",
       },
       body: {
-        es: "Participé en el desarrollo y mantenimiento de aplicaciones utilizadas en entornos productivos empresariales, colaborando en la interpretación de necesidades del cliente, el análisis de requerimientos y la construcción de soluciones alineadas al negocio.",
-        en: "I have worked on enterprise applications used in production environments, collaborating in understanding client needs, analyzing requirements and building solutions aligned with business goals.",
+        es: "Trabajé sobre aplicaciones utilizadas en entornos productivos, participando en análisis de requerimientos, resolución de incidencias y desarrollo de funcionalidades alineadas a necesidades concretas del negocio.",
+        en: "I have worked on applications used in production environments, contributing to requirements analysis, incident resolution, and the development of features aligned with real business needs.",
       },
     },
     {
       title: {
-        es: "BACKEND Y FRONTEND CONECTADOS",
-        en: "CONNECTED BACKEND AND FRONTEND",
+        es: "BACKEND COMO FORTALEZA",
+        en: "BACKEND AS MY CORE STRENGTH",
       },
       body: {
-        es: "Mi especialización está en Backend con ecosistema .NET, pero me interesa comprender el producto de punta a punta: desde la API y el modelo de datos hasta la interfaz que finalmente utiliza el usuario. No me limito a una tecnología específica; prefiero elegir la herramienta adecuada para cada problema y aprender lo necesario para construir soluciones sólidas.",
-        en: "While my specialization is Backend .NET ecosystem, I enjoy working across the entire product, from the API and data model to the user experience. I don't define myself by a single language or framework; I believe in choosing the right tool for each challenge and continuously learning what's needed to build reliable, well-crafted software.",
+        es: "Mi foco está en .NET, APIs, lógica de negocio y datos. Busco construir soluciones claras y mantenibles, sin perder de vista cómo cada decisión impacta en el resto del producto.",
+        en: "My main focus is on .NET, APIs, business logic, and data. I aim to build clear, maintainable solutions while considering how each technical decision impacts the rest of the product.",
       },
     },
     {
       title: {
-        es: "TECNOLOGÍA CON IDENTIDAD",
-        en: "TECHNOLOGY WITH IDENTITY",
+        es: "VISIÓN END-TO-END",
+        en: "END-TO-END PERSPECTIVE",
       },
       body: {
-        es: "No considero que una aplicación esté terminada solo porque funciona. También importa que sea clara, usable y visualmente coherente, para que la solución no solo resuelva un problema, sino que también represente lo que el cliente necesita.",
-        en: "I don't consider an application finished just because it works. It also needs to be clear, usable and visually consistent, so the solution not only solves a problem but also represents what the client needs.",
+        es: "Me interesa entender el flujo completo: desde el modelo de datos y la API hasta la interfaz que utiliza el usuario. Esa mirada me permite comunicarme mejor entre áreas y tomar decisiones técnicas con más contexto.",
+        en: "I like to understand the complete flow of a product: from the data model and API to the interface used by the end user. This perspective helps me collaborate across areas and make technical decisions with more context.",
       },
     },
   ],

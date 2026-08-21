@@ -81,7 +81,7 @@ export function AboutSection() {
                   <div className="min-w-0 flex-1">
                     <p className="font-sans text-[0.88rem] leading-7 text-white sm:text-[0.93rem] lg:whitespace-nowrap">
                       <span className="font-sans font-medium text-white">{profile.role[locale]}</span>
-                      {" - "}
+                      {" \u2014 "}
                       <span className="font-sans text-[var(--color-copy)]">{profile.sideNote[locale]}</span>
                     </p>
                     <p className="type-meta mt-3 text-[0.7rem]">

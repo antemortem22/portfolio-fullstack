@@ -21,7 +21,7 @@ export function resolveProjectPreview(project: Project) {
 
 export function ProjectRow({ project, index, locale, onOpen }: ProjectRowProps) {
   const previewSrc = resolveProjectPreview(project);
-  const isPriorityPreview = index === 0;
+  const isPriorityPreview = index === 0 || previewSrc === "/project-invitation.png";
 
   return (
     <MotionReveal className="border-t border-white/8">
